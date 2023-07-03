@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'React Beyond',
-  tagline: 'Higher-order components which reach beyond component boundaries',
+  tagline: 'Enhance React beyond component boundaries',
   favicon: 'img/logo.svg',
 
   // Set the production url of your site here
@@ -72,33 +72,33 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'theSidebar',
-          //   position: 'left',
-          //   label: 'Guide',
-          //   href: '/docs/guide/introduction'
-          // },
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'theSidebar',
-          //   position: 'left',
-          //   label: 'API',
-          //   href: '/docs/api'
-          // },
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'theSidebar',
-          //   position: 'left',
-          //   label: 'Gallery',
-          //   href: '/docs/category/gallery',
-          // },
-          // {href: '/blog', label: 'Blog', position: 'left'},
-          // {
-          //   href: 'https://github.com/react-beyond/react-beyond',
-          //   label: 'GitHub',
-          //   position: 'right',
-          // },
+          {
+            type: 'docSidebar',
+            sidebarId: 'theSidebar',
+            position: 'left',
+            label: 'Guide',
+            href: '/docs/guide/introduction'
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'theSidebar',
+            position: 'left',
+            label: 'Reference',
+            href: '/docs/reference'
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'theSidebar',
+            position: 'left',
+            label: 'Gallery',
+            href: '/docs/category/gallery',
+          },
+          {href: '/blog', label: 'Blog', position: 'left'},
+          {
+            href: 'https://github.com/react-beyond/react-beyond',
+            label: 'GitHub',
+            position: 'right',
+          },
         ],
       },
       footer: {

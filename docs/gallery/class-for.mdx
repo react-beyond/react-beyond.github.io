@@ -7,6 +7,28 @@ description: Transforms all `class` and `for` props to `className` and `htmlFor`
 
 Transforms all "class" and "for" props to "className" and "htmlFor".
 
+import { Sandpack } from "@codesandbox/sandpack-react";
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
+
+<Sandpack />
+<Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+
+I can write **Markdown** alongside my _JSX_!
+
+
+
+
 ## Installation
 
 ```bash

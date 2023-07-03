@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Tired of writing out `className=`?',
+    title: <><span style={{color: '#0f0'}}>✓</span> No bundler plugin</>,
     // Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
@@ -12,7 +12,7 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Wondered what if React has *ngIf or v-if?',
+    title: <><span style={{color: '#0f0'}}>✓</span> TypeScript</>,
     // Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
@@ -20,7 +20,7 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Works will HMR / Fast Refresh',
+    title: <><span style={{color: '#0f0'}}>✓</span> HMR support</>,
     // Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
@@ -34,7 +34,7 @@ function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        {/* <Svg className={styles.featureSvg} role="img" /> */}
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
