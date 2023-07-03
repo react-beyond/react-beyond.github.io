@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://react-deephoc.github.io/blog</id>
+    <title>React Beyond Blog</title>
+    <updated>2023-06-25T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://react-deephoc.github.io/blog"/>
+    <subtitle>React Beyond Blog</subtitle>
+    <icon>https://react-deephoc.github.io/img/logo.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[Announcing React Deephoc]]></title>
+        <id>https://react-deephoc.github.io/blog/announcing-react-deephoc</id>
+        <link href="https://react-deephoc.github.io/blog/announcing-react-deephoc"/>
+        <updated>2023-06-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Coming soon...]]></summary>
+        <content type="html"><![CDATA[<p>Coming soon...</p>]]></content>
+        <author>
+            <name>Marton Sari</name>
+            <uri>https://github.com/sarimarton</uri>
+        </author>
+    </entry>
+</feed>
