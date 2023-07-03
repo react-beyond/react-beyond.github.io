@@ -1,0 +1,35 @@
+---
+sidebar_position: 2
+---
+# HMR / React Fast Refresh
+
+In order to use HMR with deep HOCs, you need to use a bundler plugin.
+
+## Setting up HMR / Fast Refresh
+
+For the time being, we support Vite. But don't worry, it's really easy to implement HMR support for other bundlers as well!
+
+Add the `react-beyond/plugin/vite` plugin to your Vite config:
+
+```tsx title="vite.config.ts"
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+// highlight-next-line
+import reactBeyond from 'react-beyond/plugin/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    // highlight-next-line
+    reactBeyond()
+  ]
+})
+```
+
+Note: `reactBeyond()` must be added _after_ `react()`.
+
+## How it works
+
+HMR (Hot Module Replacement) is a feature that allows you to change your code and see the changes in the browser without reloading the page. How does it impact deep HOCs? Well, when you change a file, React Refresh looks up the  component by the previous reference in the tree and updates them. But because deep HOCs are wrapping all the components, React Refresh can't find the original component within the deep HOC's scope, and therefore nothing happens.
+
+React Beyond, when a HOC is applied to a component, registers the new component in React Refresh with an amended id string, containing the HOC chain applied to the base component. When an HMR update occurs, it re-applies the HOCs to the new component and registers it again.

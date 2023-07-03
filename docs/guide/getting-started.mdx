@@ -1,0 +1,44 @@
+---
+sidebar_position: 1
+---
+
+# Getting Started
+
+## Installation
+
+```bash
+npm install react-beyond
+```
+
+## Add some deep HOCs to your app
+
+Now it's time to write your deep HOCs or find some cool ones in the [Gallery](/docs/category/gallery)!
+
+
+```tsx
+// highlight-start
+import { Beyond } from "react-beyond"
+// highlight-end
+
+import App from "./App"
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    {/* highlight-start */}
+    <Beyond hocs={[
+      deepClassForProp(),
+      deepIfProp(),
+      deepLoaderProp(),
+      // ...
+    ]}>
+    {/* highlight-end */}
+      <App />
+    {/* highlight-start */}
+    </Beyond>
+    {/* highlight-end */}
+  </React.StrictMode>
+);
+```
+
+You're good to go! 
+In order to use HMR / React Fast Refresh, head on to the next section.

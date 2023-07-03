@@ -1,0 +1,64 @@
+---
+sidebar_position: 3
+description: Turns all <a href> elements into SPA links with a navigate callback.
+---
+
+# deepHrefHandler
+
+Turns all `<a href>` elements into SPA links with a navigate callback. If an onClick prop is already present, it will take precedence.
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/hrefhandler
+```
+
+## Usage
+
+```
+deepHrefHandler(opts: {
+  id?: string
+  navigate: (href: string) => void
+  onlyRelative?: boolean
+}): HOC
+```
+
+- `id` - The id of the HOC. Defaults to `"hrefHandler"`.
+- `navigate` - The callback to call when a link is clicked.
+- `onlyRelative` - Whether to only handle relative links. Defaults to `true`.
+
+(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
+
+## Examples
+
+```tsx
+import { Beyond } from "react-beyond"
+import { deepHrefHandler } from "@react-beyond/hrefhandler"
+
+const el = (
+  <Beyond hocs={[
+    deepHrefHandler({
+      navigate: (href) => {
+        console.log(`Navigating to ${href}`)
+      }
+    })
+  ]}>
+    <App />
+  </Beyond>
+)
+```
+
+Elements like this under `<App />`:
+
+```tsx
+<a href="/page1" />
+```
+
+will turn into this:
+
+```tsx
+<a href="/page1" onClick={(e) => {
+  e.preventDefault()
+  opts.navigate(/* current value of props.href */)
+}) />
+```

@@ -1,0 +1,54 @@
+---
+sidebar_position: 3
+description: Transforms all `_clsx` prop on elements to `className` with clsx() applied.
+---
+
+# deepClsxProp
+
+Transforms all "_clsx" prop on elements to "className" with clsx() applied. If a `className` prop is already present, it will be merged.
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/clsxprop
+```
+
+## Usage
+
+```
+deepClsxProp(opts: {
+  id?: string
+} = {}): HOC
+```
+
+- `id` - The id of the HOC. Defaults to `"clsxProp"`.
+
+(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
+
+## Examples
+
+```tsx
+import { Beyond } from "react-beyond"
+import { deepClsxProp } from "@react-beyond/clsxprop"
+
+const el = (
+  <Beyond hocs={[deepClsxProp()]}>
+    <App />
+  </Beyond>
+)
+```
+
+Elements like this under `<App />`:
+
+```tsx
+<div _clsx="some-class" />
+<div _clsx={['some-class', true && 'other-class']} />
+```
+
+will turn into this:
+
+```tsx
+<div className="some-class" />
+<div className="some-class other-class" />
+```
+

@@ -1,0 +1,54 @@
+---
+sidebar_position: 3
+description: Wraps all components in a mobx `observer` HOC.
+---
+
+# deepMobx
+
+Wraps all function components in a mobx `observer` HOC.
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/mobx
+```
+
+## Usage
+
+```
+deepMobx(opts: {
+  id?: string
+} = {}): HOC
+```
+
+- `id` - The id of the HOC. Defaults to `"mobx"`.
+
+(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
+
+## Examples
+
+```tsx
+import { Beyond } from "react-beyond"
+import { deepTryCatch } from "@react-beyond/mobx"
+
+const el = (
+  <Beyond hocs={[deepMobx()]}>
+    <App />
+  </Beyond>
+)
+```
+
+Components like this under `<App />`:
+
+```tsx
+function MyComponent(props) { /* ... */ }
+```
+
+will turn into this:
+
+```tsx
+observer(function MyComponent(props) { /* ... */ })
+```
+
+
+

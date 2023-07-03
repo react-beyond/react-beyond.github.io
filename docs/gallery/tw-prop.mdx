@@ -1,0 +1,62 @@
+---
+sidebar_position: 3
+description: Transforms all "_tw" prop on elements to "className" with clsx() applied.
+---
+
+# deepTwProp
+
+Transforms all `_tw` prop on elements to "className" with clsx() applied. If a `className` prop is already present, it will be merged.
+
+In its runtime logic, this HOC doesn't differ from [deepClsxProp](/docs/gallery/clsx-prop) at all, it has the exact same source code (except the prop name and the HOC id). It might still be useful for separating the tailwind utility classes from the others. In a later development, we may try to add [TypeScript check](https://twitter.com/markdalgleish/status/1329639099498577921) to the `_tw` prop to make sure it's only used for tailwind.
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/twprop
+```
+
+In your VSCode settings, add this config:
+
+```json
+  "tailwindCSS.experimental.classRegex": [
+    "_tw=\"([^\"]*)"
+  ],
+```
+
+## Usage
+
+```
+deepTwProp(opts: {
+  id?: string
+} = {}): HOC
+```
+
+- `id` - The id of the HOC. Defaults to `"twProp"`.
+
+(Check out the [Usage Patterns](/docs/guide/usage-patterns) page to see alternative syntaxes.)
+
+## Examples
+
+```tsx
+import { Beyond } from "react-beyond"
+import { deepClsxProp } from "@react-beyond/twprop"
+
+const el = (
+  <Beyond hocs={[deepTwProp()]}>
+    <App />
+  </Beyond>
+)
+```
+
+Elements like this under `<App />`:
+
+```tsx
+<div class="some-class" _tw={['mx-6', true && 'bg-red-400']} />
+```
+
+will turn into this:
+
+```tsx
+<div className="some-class mx-6 bg-red-400" />
+```
+
