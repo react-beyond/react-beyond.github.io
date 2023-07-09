@@ -7,6 +7,7 @@ import Sandpack from '../components/Sandpack'
 import HomepageFeatures from '../components/HomepageFeatures'
 
 import styles from './index.module.css'
+import { removeIndent } from '../components/util'
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext()
@@ -47,16 +48,36 @@ export default function Home() {
       <HomepageHeader />
       <main style={{ padding: '40px' }}>
         <p>
-          React Beyond lets you define higher order components (HOCs) that
-          deeply penetrates through component boundaries, and "infects" the
-          entire subtree. This opens up a whole new world of possibilities for a
-          much more natural code organization &ndash; including directives, well-known
-          from other frameworks, and much more.
+          React Beyond lets you define features that are available to an entire
+          subtree, beyond component boundaries. It opens up a whole new world of
+          possibilities for more intuitive code.
         </p>
-        <HomepageFeatures />
-        <div style={{marginBottom: '40px'}}>
-          <Sandpack />
+        <div style={{ marginBottom: '40px' }}>
+          <Sandpack
+            options={{ editorHeight: '375px' }}
+            css={`
+              body {
+                @apply flex h-screen justify-center items-center;
+              }
+            `}
+            files={{
+              '/App.jsx': removeIndent(`
+                // Vue-like if/else directives
+
+                export default function App() {
+                  return (
+                    <>
+                      <button x-if={false}>Hello 1</button>
+                      <button x-else-if={false}>Hello 2</button>
+                      <button x-else>Hello 3</button>
+                    </>
+                  )
+                }
+              `)
+            }}
+          />
         </div>
+        <HomepageFeatures />
         <div className={styles.buttons} style={{ margin: '40px' }}>
           <Link
             className="button button--secondary button--lg"
