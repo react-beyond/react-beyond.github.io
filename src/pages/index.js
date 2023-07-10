@@ -49,8 +49,8 @@ export default function Home() {
       <main style={{ padding: '40px' }}>
         <p>
           React Beyond lets you define features that are available to an entire
-          subtree, beyond component boundaries. It opens up a whole new world of
-          possibilities for more intuitive code.
+          subtree with all the descendant components. It provides a foundation for
+          tools to create more intuitive code.
         </p>
         <div style={{ marginBottom: '40px' }}>
           <Sandpack

@@ -12,8 +12,8 @@ const FeatureList = [
     // Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        React Beyond doesn't need bundler plugins or other compilation-time
-        tooling. Features are simple higher-order components.
+        No bundler plugins or other compilation-time
+        tooling. React Beyond features are simple higher-order components.
       </>
     )
   },
@@ -25,7 +25,8 @@ const FeatureList = [
     ),
     // Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
-      <>Ctrl/Cmd + Click on a directive and you go straight to the definition</>
+      <>Directive features are typed, so
+      Ctrl/Cmd + Click works just like on any other prop in your IDE.</>
     )
   },
   {
