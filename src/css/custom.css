@@ -28,3 +28,24 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+
+
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+button {
+  @apply bg-none border-none bg-transparent;
+}
+
+.swiper {
+  width: 100%;
+  max-width: 1280px;
+}
+
+.swiper-slide {
+  height: 300px;
+  line-height: 300px;
+  text-align: center;
+}

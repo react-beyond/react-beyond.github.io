@@ -11,7 +11,8 @@ export default function (props) {
       {...{
         options: {
           showTabs: true,
-          editorHeight: '300px',
+          editorHeight: '375px',
+          // editorHeight: '300px',
           ...props.options
         },
         theme: dracula,
@@ -89,23 +90,23 @@ export default function (props) {
             `)
           },
           '/index.jsx': {
-            code: removeIndent(
-              `import { StrictMode } from 'react'
-              import { createRoot } from 'react-dom/client'
-              import { Beyond } from 'react-beyond'
-              import { ifElse } from '@react-beyond/ifelse'
+            code: removeIndent(`
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { Beyond } from 'react-beyond'
+${(props.features || []).map((f) => `import { ${f} } from '@react-beyond/${f.toLowerCase()}'`).join('\n')}
 
-              import App from './App'
-              import './styles.css'
+import App from './App'
+import './styles.css'
 
-              createRoot(document.getElementById('root')).render(
-                <StrictMode>
-                  <Beyond features={[ifElse()]}>
-                    <App />
-                  </Beyond>
-                </StrictMode>
-              )`
-            )
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Beyond features={[${(props.features || []).map((f) => `${f}()`).join(', ')}]}>
+      <App />
+    </Beyond>
+  </StrictMode>
+)
+`)
           },
           '/App.jsx': removeIndent(
             `export default function App() {

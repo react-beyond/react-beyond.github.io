@@ -12,8 +12,8 @@ const FeatureList = [
     // Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        No bundler plugins or other compilation-time
-        tooling. React Beyond features are simple higher-order components.
+        No bundler plugins or other compilation-time tooling. React Beyond
+        Features are simple higher-order components.
       </>
     )
   },
@@ -25,19 +25,24 @@ const FeatureList = [
     ),
     // Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
-      <>Directive features are typed, so
-      Ctrl/Cmd + Click works just like on any other prop in your IDE.</>
+      <>
+        Directives are typed, so Ctrl/Cmd + Click works just like on any other
+        prop in your IDE.
+      </>
     )
   },
   {
     title: (
       <>
-        <span style={{ color: '#0f0' }}>✓</span> HMR / Fast Refresh
+        <span style={{ color: '#0f0' }}>✓</span> HMR / Fast Refresh / SSR
       </>
     ),
     // Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
-      <>Hot Module Replacement / React Fast Refresh works as expected</>
+      <>
+        React Beyond supports Hot Module Replacement / React Fast Refresh; and
+        SSR is not a problem as well.
+      </>
     )
   }
 ]
