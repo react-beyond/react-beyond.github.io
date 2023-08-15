@@ -16,9 +16,12 @@ module.exports = {
     // https://github.com/tailwindlabs/tailwindcss/discussions/11701#discussioncomment-6569866
     require('tailwindcss/plugin')(({ matchUtilities }) => {
       matchUtilities({
-        x: (value) => ({
-          [`@apply ${value.replaceAll(',', ' ')}`]: {}
-        })
+        apply: (value) => {
+          debugger
+          return {
+            [`@apply ${value.replaceAll(',', ' ')}`]: {}
+          }
+        }
       })
     })
   ]

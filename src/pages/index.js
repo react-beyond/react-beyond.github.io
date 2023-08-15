@@ -20,7 +20,7 @@ function HomepageHeader() {
   return (
     <header
       className={clsx('hero hero--primary', styles.heroBanner)}
-      x-tw="[[data-theme=dark]_&]:bg-transparent"
+      x-tw="[[data-theme=dark]_&]:bg-transparent !pt-12 !pb-4"
     >
       <div className="container">
         <img
@@ -66,14 +66,14 @@ export default function Home() {
           for tools to create more intuitive code. */}
           React Beyond lets you define higher-order components which recursively
           re-apply themselves on the child components. You can create features
-          that are available to the entire tree. It provides a foundation for
-          tools to create more intuitive code.
+          that are available to the entire tree. It opens up new exciting
+          possibilities in React to create more intuitive code.
         </p>
         <div
           x-tw={[
             'flex mb-2 py-3',
-            '[&>*]:x-[pb-1,cursor-pointer,border-solid,border-transparent,border-b-2,border-[20px]]',
-            '[&>.active]:x-[border-b,border-b-purple-600]'
+            '[&>*]:apply-[pb-1,cursor-pointer,border-solid,border-transparent,border-b-2,border-[20px]]',
+            '[&>.active]:apply-[border-b,border-b-[var(--marcika-tint)]]'
             // 'shadow-xl'
           ]}
           x-on-children={(idx) => ({
@@ -91,8 +91,8 @@ export default function Home() {
           <button>Loader</button>
           <button>On children</button>
           <button>Menu</button>
-          <button>MobX</button>
-          <button>Lazy render</button>
+          <button>Observer</button>
+          {/* <button>Lazy render</button> */}
         </div>
         <div class="xshadow-[0_5px_40px_rgba(0,0,255,1)]">
           <Swiper
@@ -107,6 +107,10 @@ export default function Home() {
               watchState: true
             }}
             className=""
+            x-tw={[
+              'shadow-[0_5px_250px_rgba(var(--marcika-tint-rgb),0.15)]',
+              'bg-[rgba(var(--marcika-tint-rgb,0.6))]'
+            ]}
           >
             <SwiperSlide data-hash="ifelse">
               <Sandpack
@@ -119,6 +123,7 @@ export default function Home() {
                 files={{
                   '/App.jsx': removeIndent(`
                 // Vue-like if/else directives
+                // to avoid "syntax disaster" (™ Ryan Florence)
 
                 export default function App() {
                   return (
