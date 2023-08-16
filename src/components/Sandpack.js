@@ -148,7 +148,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Beyond } from 'react-beyond'
 ${(props.features || [])
-  .map((f) => `import { ${f} } from '@react-beyond/${f.toLowerCase()}'`)
+  .map((f) => `import { ${f.trim().match(/^\w+/)[0]} } from '@react-beyond/${f.trim().match(/^\w+/)[0].toLowerCase()}'`)
   .join('\n')}
 
 import App from './App'
@@ -157,7 +157,7 @@ import './styles.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Beyond features={[${(props.features || [])
-      .map((f) => `${f}()`)
+      .map((f) => `${f}`)
       .join(', ')}]}>
       <App />
     </Beyond>

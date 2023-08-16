@@ -85,13 +85,15 @@ export default function Home() {
           })}
         >
           <button>If/else</button>
-          <button>Tailwind</button>
-          <button>Transform</button>
+          <button>Class</button>
+          {/* <button>Tailwind</button> */}
+          <button>Transpose</button>
           <button>Error fallback</button>
           <button>Loader</button>
           <button>On children</button>
           <button>Menu</button>
           <button>Observer</button>
+          <button>RxJS</button>
           {/* <button>Lazy render</button> */}
         </div>
         <div class="xshadow-[0_5px_40px_rgba(0,0,255,1)]">
@@ -119,11 +121,11 @@ export default function Home() {
                     @apply flex h-screen justify-center items-center;
                   }
                 `}
-                features={['ifElse']}
+                features={['ifElse()']}
                 files={{
                   '/App.jsx': removeIndent(`
                 // Vue-like if/else directives
-                // to avoid "syntax disaster" (™ Ryan Florence)
+                // to avoid "syntax disaster"
 
                 export default function App() {
                   return (
@@ -138,28 +140,97 @@ export default function Home() {
                 }}
               />
             </SwiperSlide>
-            <SwiperSlide data-hash="tw">
+            <SwiperSlide data-hash="classfor">
               <Sandpack
                 css={`
                   body {
                     @apply flex h-screen justify-center items-center;
                   }
                 `}
-                features={['tw']}
+                features={['classFor()']}
                 files={{
                   '/App.jsx': removeIndent(`
-                // Tailwind "x-tw" props
+                // Use \`class\` and \`for\` instead of \`className\` and \`htmlFor\`
 
                 export default function App() {
                   return (
-                    <button x-tw="bg-blue-500 text-white">Hello</button>
+                    <button class="bg-blue-500 text-white">
+                      Hello
+                    </button>
                   )
                 }
               `)
                 }}
               />
             </SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide data-hash="transpose">
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+                `}
+                features={[`transpose()`]}
+                files={{
+                  '/App.jsx': removeIndent(`
+                // Tranposition wrapper components
+
+                export default function App() {
+                  return (
+                    <button x-transpose={(self) => <Tooltip title="Hello">{self}</Tooltip>}>
+                      Hover me
+                    </button>
+                  )
+                }
+
+                function Tooltip({ title, children }) {
+                  return (
+                    <div class="inline-block relative">
+                      <small class="absolute left-[50%] -translate-x-1/2 -translate-y-[calc(100%+0.25rem)] bg-slate-600 text-white leading-tight px-1 rounded hidden">
+                        {title}
+                      </small>
+                      <div class="[:has(~&:hover)]:block">
+                        {children}
+                      </div>
+                    </div>
+                  )
+                }
+
+              `)
+                }}
+              />
+            </SwiperSlide>
+            <SwiperSlide data-hash="errorfallback">
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+                `}
+                features={[`errorFallback()`]}
+                files={{
+                  '/App.jsx': removeIndent(`
+                // Automatic error fallback
+                export default function App() {
+                  return (
+                    <div className="flex flex-col gap-2">
+                      <button>Hello</button>
+                      <Inner />
+                    </div>
+                  )
+                }
+
+                function Inner() {
+                  fortune;favors;the;brave
+                  return (
+                    <button>Bad component 💀</button>
+                  )
+                }
+
+              `)
+                }}
+              />
+            </SwiperSlide>
           </Swiper>
         </div>
         <HomepageFeatures />

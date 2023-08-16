@@ -32,13 +32,18 @@
   --ifm-color-primary-lightest: #4fddbf; */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-heading-color: var(--marcika-tint);
-  --ifm-color-content-inverse: rgba(var(--marcika-tint-rgb), 0.5);
+  /* --ifm-color-content-inverse: rgba(var(--marcika-tint-rgb), 0.5); */
+  --ifm-color-content-inverse: #F4FA96;
   /* --ifm-color-content-inverse: var(--marcika-tint); */
 }
 
 /* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply max-w-[1300px] mx-auto;
+}
 
 button {
   @apply bg-none border-none bg-transparent;
@@ -56,7 +61,7 @@ button {
 .swiper {
   width: 100%;
   max-width: 1280px;
-  background: rgba(248,90,255,.06);
+  background: rgba(var(--marcika-tint-rgb),.06);
 }
 
 .swiper-slide {
@@ -73,35 +78,6 @@ body {
   @apply selection:apply-[text-white,bg-[var(--marcika-tint)]];
   /* @apply bg-[url('/img/cosmic.jpg')] */
 }
-
-/* body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/img/cosmic.jpg') no-repeat;
-  background-size: cover;
-  -webkit-mask-image: linear-gradient(to bottom, black 200px, transparent 300px);
-  mask-image: linear-gradient(to bottom, black 200px, transparent 300px);
-} */
-
-
-/* body {
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/img/cosmic.jpg') no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  -webkit-mask-image: linear-gradient(to bottom, black 200px, transparent 300px);
-  mask-image: linear-gradient(to bottom, black 200px, transparent 300px);
-
-
-
-} */
-
 
 /* https://codepen.io/silas/pen/rNYqZoz */
 .gradient-blur {
