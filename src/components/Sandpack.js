@@ -71,37 +71,89 @@ export default function (props) {
         theme: marcikaTheme,
         template: 'vite-react',
         customSetup: {
-          dependencies: {
-            'autoprefixer': '^10.4.14',
-            '@react-beyond/classfor': 'latest',
-            '@react-beyond/clsx': 'latest',
-            '@react-beyond/errorfallback': 'latest',
-            '@react-beyond/hrefhandler': 'latest',
-            '@react-beyond/ifelse': 'latest',
-            '@react-beyond/loader': 'latest',
-            '@react-beyond/menu': 'latest',
-            '@react-beyond/mobx': 'latest',
-            '@react-beyond/tooltip': 'latest',
-            '@react-beyond/transpose': 'latest',
-            '@react-beyond/tw': 'latest',
-            'react-beyond': 'latest',
-            'tailwindcss': '^3.3.2'
-          }
+          // dependencies: {
+          //   'autoprefixer': '^10.4.14',
+          //   '@react-beyond/classfor': 'latest',
+          //   '@react-beyond/clsx': 'latest',
+          //   '@react-beyond/errorfallback': 'latest',
+          //   '@react-beyond/hrefhandler': 'latest',
+          //   '@react-beyond/ifelse': 'latest',
+          //   '@react-beyond/loader': 'latest',
+          //   '@react-beyond/menu': 'latest',
+          //   '@react-beyond/mobx': 'latest',
+          //   '@react-beyond/tooltip': 'latest',
+          //   '@react-beyond/transpose': 'latest',
+          //   '@react-beyond/tw': 'latest',
+          //   'react-beyond': 'latest',
+          //   'tailwindcss': '^3.3.2'
+          // }
         },
+        files: {
+          'package.json': {
+            hidden: true,
+            code: removeIndent(
+              `{
+                "scripts": {
+                  "dev": "vite",
+                  "build": "vite build",
+                  "preview": "vite preview"
+                },
+                "dependencies": {
+                  "react": "^18.2.0",
+                  "react-dom": "^18.2.0",
+                  "autoprefixer": "^10.4.14",
+                  "@react-beyond/classfor": "latest",
+                  "@react-beyond/clsx": "latest",
+                  "@react-beyond/errorfallback": "latest",
+                  "@react-beyond/hrefhandler": "latest",
+                  "@react-beyond/ifelse": "latest",
+                  "@react-beyond/loader": "latest",
+                  "@react-beyond/menu": "latest",
+                  "@react-beyond/mobx": "latest",
+                  "@react-beyond/tooltip": "latest",
+                  "@react-beyond/transpose": "latest",
+                  "@react-beyond/tw": "latest",
+                  "react-beyond": "latest",
+                  "tailwindcss": "^3.3.2"
+                },
+                "devDependencies": {
+                  "@vitejs/plugin-react": "3.1.0",
+                  "vite": "4.1.4",
+                  "esbuild-wasm": "0.17.12"
+                }
+              }`
+            )
+        },
+        },
+        files: {
+          },
         files: {
           '/vite.config.js': {
             hidden: true,
             code: removeIndent(
-              `import { defineConfig } from 'vite'
-              import react from '@vitejs/plugin-react'
-              import reactBeyond from 'react-beyond/plugin/vite'
+              `import { defineConfig } from "vite";
+              import react from "@vitejs/plugin-react";
 
-              export default defineConfig({
-                plugins: [react(), reactBeyond()]
+              export default defineConfig(async function () {
+                // Docusaurus doesn't work with "type": "module", and it would be needed for
+                // the CodeSandBox click-out to work. Renaming the file to vite.config.mjs
+                // almost solves the issue, but the sandbox template re-generates the stock
+                // vite.config.js file, so we have to work with that. Dynamic import is a
+                // workaround, because it can import CommonJS modules. Otherwise this would be
+                // as simple as:
+                // import reactBeyond from 'react-beyond/plugin/vite'
+                // export default defineConfig({
+                //   plugins: [react(), reactBeyond()],
+                // });
+
+                const reactBeyond = (await import('react-beyond/plugin/vite')).default
+                return {
+                  plugins: [react(), reactBeyond()]
+                }
               })`
             )
           },
-          '/tailwind.config.js': {
+          '/tailwind.config.mjs': {
             hidden: true,
             code: removeIndent(`
               export default {
@@ -116,12 +168,12 @@ export default function (props) {
               }
             `)
           },
-          '/postcss.config.js': {
+          '/postcss.config.mjs': {
             hidden: true,
             code: removeIndent(`
               import tailwind from 'tailwindcss'
               import autoprefixer from 'autoprefixer'
-              import tailwindConfig from './tailwind.config.js'
+              import tailwindConfig from './tailwind.config.mjs'
 
               export default {
                 plugins: [tailwind(tailwindConfig), autoprefixer],

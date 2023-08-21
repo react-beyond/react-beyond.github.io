@@ -169,24 +169,37 @@ export default function Home() {
                   body {
                     @apply flex h-screen justify-center items-center;
                   }
+
+                  button {
+                    @apply mx-3;
+                  }
                 `}
-                features={[`transpose()`]}
+                features={['transpose()', 'classFor({ clsx: true })']}
                 files={{
                   '/App.jsx': removeIndent(`
-                // Tranposition wrapper components
+                // Transpose wrapper components
 
                 export default function App() {
-                  return (
-                    <button x-transpose={(self) => <Tooltip title="Hello">{self}</Tooltip>}>
-                      Hover me
+                  return ([
+                    // Tooltip 'contains' the button? Counterintuitive hierarchy
+                    <Tooltip title="Hello">
+                      <button>Hover me 1</button>
+                    </Tooltip>,
+
+                    // Makes more sense, and easier to control it as a prop
+                    <button x-transpose={$ => <Tooltip title="Hello">{$}</Tooltip>}>
+                      Hover me 2
                     </button>
-                  )
+                  ])
                 }
 
                 function Tooltip({ title, children }) {
                   return (
                     <div class="inline-block relative">
-                      <small class="absolute left-[50%] -translate-x-1/2 -translate-y-[calc(100%+0.25rem)] bg-slate-600 text-white leading-tight px-1 rounded hidden">
+                      <small class={[
+                        "absolute left-1/2 -translate-x-1/2 bottom-full mb-2",
+                        "bg-slate-600 text-white px-1 rounded hidden"
+                      ]}>
                         {title}
                       </small>
                       <div class="[:has(~&:hover)]:block">
