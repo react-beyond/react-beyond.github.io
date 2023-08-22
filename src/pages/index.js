@@ -50,6 +50,8 @@ export default function Home() {
   // const swiperRef = useRef()
   const [swiperRef, setSwiperRef] = useState(null)
 
+  const location = typeof window !== 'undefined' ? window.location : { hash: '' }
+
   return (
     <Layout
       title={`${siteConfig.title}`}
