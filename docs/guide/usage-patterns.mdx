@@ -4,17 +4,17 @@ sidebar_position: 5
 
 # Usage Patterns
 
-## Multiple deep HOCs
+## Multiple features
 
-Deep HOCs can be applied anywhere, and they can be nested. After all, they're just HOCs. But JavaScript doesn't provide a nice way to apply a series of functions to a value:
+Beyond Features can be applied anywhere, and they can be nested. After all, they're just higher-order components. But JavaScript doesn't provide a nice way to apply a series of functions to a value:
 
 ```tsx 
 // 🥴
 const WrappedApp =
-  deepTryCatch()(
-    deepIfProp()(
-      deepLoaderProp()(
-        deepClassForProp()(
+  errorFallback()(
+    ifElse()(
+      loader()(
+        classFor()(
           App
         )
       )
@@ -22,45 +22,25 @@ const WrappedApp =
   )
 ```
 
-In the [Gallery](/docs/category/gallery), HOC modules, along with the HOC function itself, export a _component_ as well, which provides an alternative syntax. The component's export name only differs from the HOC in that the first letter is uppercase:
-
-```tsx
-// method 1:
-import { deepClassForProp } from "@react-beyond/classforprop"
-const NewComponent = deepClassForProp({ id: 'classFor' })(OldComponent)
-
-// method 2:
-import { DeepClassForProp } from "@react-beyond/classforprop"
-  // ...
-  return (
-    <DeepClassForProp id="classFor">
-      <App />
-    </DeepClassForProp>
-  )
-```
-
-But this doesn't help much with the indentation hell caused by the nesting.
-
-## Beyond
-
-Therefore, React Beyond provides a way to define a series of HOCs in a flat way. It's a component which takes a list of HOCs and applies them in order:
+To ease on this pain, React Beyond exports a `Beyond` component which takes a list of features and applies them in order:
 
 ```tsx 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Beyond hocs={[
-    deepClassForProp(),
-    deepLoaderProp(),
-    deepIfProp()
-    deepTryCatch()
+    classFor(),
+    loader(),
+    ifElse()
+    errorFallback()
   ]}>
     <App />
   </Beyond>
 )
 ```
 
-Note that the application order matters. `Beyond` takes the HOCs in the order of application, so it looks reversed from the nested syntax.
+Note that the application order matters. `Beyond` takes the features in the order of application, so it looks reversed from the nested syntax.
 
 In React DevTools, you can see the applied HOCs as a label next to the component, indicating the application order from left to right:
 
-![DevTools Screenshot](/img/devtools.png)
+![devtools](../faq/devtools.png)
+
 

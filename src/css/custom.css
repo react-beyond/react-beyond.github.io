@@ -33,7 +33,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-heading-color: var(--marcika-tint);
   /* --ifm-color-content-inverse: rgba(var(--marcika-tint-rgb), 0.5); */
-  --ifm-color-content-inverse: #F4FA96;
+  --ifm-color-content-inverse: #f4fa96;
   /* --ifm-color-content-inverse: var(--marcika-tint); */
 }
 
@@ -61,7 +61,7 @@ button {
 .swiper {
   width: 100%;
   max-width: 1280px;
-  background: rgba(var(--marcika-tint-rgb),.06);
+  background: rgba(var(--marcika-tint-rgb), 0.06);
 }
 
 .swiper-slide {
@@ -94,7 +94,7 @@ body {
   inset: 0;
 }
 .gradient-blur::before {
-  content: "";
+  content: '';
   z-index: 1;
   backdrop-filter: blur(0.5px);
   mask: linear-gradient(
@@ -171,7 +171,7 @@ body {
   );
 }
 .gradient-blur::after {
-  content: "";
+  content: '';
   z-index: 8;
   backdrop-filter: blur(64px);
   mask: linear-gradient(
@@ -179,4 +179,9 @@ body {
     rgba(0, 0, 0, 0) 87.5%,
     rgba(0, 0, 0, 1) 100%
   );
+}
+
+img[alt='devtools'] {
+  width: 100%;
+  height: auto;
 }

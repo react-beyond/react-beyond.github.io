@@ -64,7 +64,8 @@ export default function Home() {
           React Beyond lets you define higher-order components which recursively
           re-apply themselves on the child components. You can create features
           that are available to the entire tree. It opens up new exciting
-          possibilities in React to create more intuitive code.
+          possibilities in React to create more intuitive code. Here are a few
+          examples:
         </p>
         <div
           x-tw={[
@@ -81,15 +82,29 @@ export default function Home() {
             'x-tw': [tab === idx && 'active']
           })}
         >
-          <button class={location.hash === '#ifelse' && 'active'}>If/else</button>
-          <button class={location.hash === '#classfor' && 'active'}>Class</button>
+          <button
+            class={
+              (location.hash === '' || location.hash === '#ifelse') && 'active'
+            }
+          >
+            If/else
+          </button>
+          <button class={location.hash === '#classfor' && 'active'}>
+            Class
+          </button>
           {/* <button>Tailwind</button> */}
-          <button class={location.hash === '#transpose' && 'active'}>Transpose</button>
-          <button class={location.hash === '#errorfallback' && 'active'}>Error fallback</button>
+          <button class={location.hash === '#transpose' && 'active'}>
+            Transpose
+          </button>
+          <button class={location.hash === '#errorfallback' && 'active'}>
+            Error fallback
+          </button>
           {/* <button>Loader</button> */}
           {/* <button>On children</button> */}
           {/* <button>Menu</button> */}
-          <button class={location.hash === '#hoc' && 'active'}>MobX observer</button>
+          <button class={location.hash === '#hoc' && 'active'}>
+            MobX observer
+          </button>
           <button class={location.hash === '#rxjs' && 'active'}>RxJS</button>
           {/* <button>Lazy render</button> */}
         </div>
@@ -175,6 +190,7 @@ export default function Home() {
                 files={{
                   '/App.jsx': removeIndent(`
                 // Transpose wrapper components
+                import Tooltip from './Tooltip'
 
                 export default function App() {
                   return ([
@@ -188,9 +204,9 @@ export default function Home() {
                       Hover me 2
                     </button>
                   ])
-                }
-
-                function Tooltip({ title, children }) {
+                }`),
+                '/Tooltip.jsx': removeIndent(`
+                export default function Tooltip({ title, children }) {
                   return (
                     <div class="inline-block relative">
                       <small class={[
@@ -204,9 +220,7 @@ export default function Home() {
                       </div>
                     </div>
                   )
-                }
-
-              `)
+                }`)
                 }}
               />
             </SwiperSlide>
@@ -222,6 +236,7 @@ export default function Home() {
                   '/App.jsx': removeIndent(`
                 // Automatic error fallback
                 export default function App() {
+                  // comment;me;out;
                   return (
                     <div className="flex flex-col gap-2">
                       <button>Hello</button>
@@ -275,9 +290,9 @@ export default function Home() {
 
                     export default function App() {
                       return (
-                        <button onClick={() => {
-                          store.counter++
-                        }}>Counter {store.counter}</button>
+                        <button onClick={() => { store.counter++ }}>
+                          Counter {store.counter}
+                        </button>
                       )
                     }
                   `),
@@ -324,8 +339,8 @@ export default function Home() {
             </SwiperSlide>
           </Swiper>
         </div>
-        <HomepageFeatures />
-        <div className={styles.buttons} style={{ margin: '40px' }}>
+        <HomepageFeatures x-transpose={($) => <div class="mt-10">{$}</div>} />
+        <div class={[styles.buttons, 'mb-10']}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/category/gallery"
@@ -333,25 +348,6 @@ export default function Home() {
             Check out the Gallery 🖼️
           </Link>
         </div>
-        <hr />
-        <h3>Wait, but doesn't it slow everything down?</h3>
-        <p>
-          Not at all. While it naturally has some overhead, the difference is
-          negligable. Your app will keep the exact same performance
-          characteristics.
-        </p>
-        <h3>Okay, but it surely breaks Fast Refresh</h3>
-        <p>
-          Not at all! We have a Vite plugin that makes it work seamlessly. And
-          adding support for other bundlers is easy.
-        </p>
-        <h3>Is it some dark magic? I don't like magic!</h3>
-        <p>
-          Up to you. But it's not really magic. React's fundamentals pretty much
-          allow this pattern, and you're never in the dark: you have full
-          TypeScript support, and you can see the applied HOCs in React
-          DevTools!
-        </p>
       </main>
     </Layout>
   )

@@ -3,23 +3,23 @@ sidebar_position: 4
 ---
 # TypeScript
 
-Those deep HOCs which add magic props to the elements universally, override the React type declarations to add the magic prop to the elements. For example:
+Those Beyond Features which add directives, override the React type declarations to add the directive typing to the elements. For example:
 
 ```tsx title="deepIfProp.ts"
 declare module 'react' {
   interface Attributes {
-    _if?: boolean
+    x-if?: boolean
   }
 }
 ```
 
 This ensures that TypeScript doesn't complain about the magic prop, and that you can Cmd/Ctrl + Click on the prop to go to the declaration.
 
-But this is a global override. Even though deep HOCs runtime mechanics is strictly scoped down to the component's subtree, TypeScript type declarations are global.
+But this is a global override. Even though the runtime mechanics of Beyond Features is strictly scoped down to the component's subtree, TypeScript type declarations are global.
 
 ## ESLint
 
-If you're using ESLint, there might be one more annoyance with the magic props if the `react/no-unknown-property` rule is enabled (it is, by default). To get rid of this issue, you have to disable the rule:
+If you're using ESLint, there might be one more annoyance with the directives if the `react/no-unknown-property` rule is enabled (it is, by default). To get rid of this issue, you have to disable the rule:
 
 ```yaml title=".eslintrc.yml"
 rules:

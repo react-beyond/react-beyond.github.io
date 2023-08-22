@@ -77,14 +77,14 @@ const config = {
             sidebarId: 'theSidebar',
             position: 'left',
             label: 'Guide',
-            href: '/docs/guide/introduction'
+            href: '/docs/guide/getting-started'
           },
           {
             type: 'docSidebar',
             sidebarId: 'theSidebar',
             position: 'left',
-            label: 'Reference',
-            href: '/docs/reference'
+            label: 'API',
+            href: '/docs/api'
           },
           {
             type: 'docSidebar',
@@ -92,6 +92,13 @@ const config = {
             position: 'left',
             label: 'Gallery',
             href: '/docs/category/gallery',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'theSidebar',
+            position: 'left',
+            label: 'FAQ',
+            href: '/docs/faq',
           },
           {href: '/blog', label: 'Blog', position: 'left'},
           {

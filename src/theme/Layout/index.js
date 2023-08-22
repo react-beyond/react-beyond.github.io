@@ -19,7 +19,20 @@ import { rxjs } from '@react-beyond/rxjs'
 
 export default function LayoutWrapper(props) {
   return (
-    <Beyond features={[onChildren(), tw(), classFor({ clsx: true })]}>
+    <Beyond //features={[onChildren(), tw(), classFor({ clsx: true })]}>
+      features={[
+        onChildren(),
+        tw(),
+        classFor({ clsx: true }),
+        errorFallback(),
+        ifElse(),
+        // loader({ loaderMask: <div>Loading...</div> }),
+        // menu(),
+        // hoc(observer),
+        // rxjs(),
+        transpose()
+      ]}
+    >
       <Layout {...props} />
     </Beyond>
   )
