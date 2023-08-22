@@ -71,59 +71,65 @@ export default function (props) {
         theme: marcikaTheme,
         template: 'vite-react',
         customSetup: {
-          // dependencies: {
-          //   'autoprefixer': '^10.4.14',
-          //   '@react-beyond/classfor': 'latest',
-          //   '@react-beyond/clsx': 'latest',
-          //   '@react-beyond/errorfallback': 'latest',
-          //   '@react-beyond/hrefhandler': 'latest',
-          //   '@react-beyond/ifelse': 'latest',
-          //   '@react-beyond/loader': 'latest',
-          //   '@react-beyond/menu': 'latest',
-          //   '@react-beyond/mobx': 'latest',
-          //   '@react-beyond/tooltip': 'latest',
-          //   '@react-beyond/transpose': 'latest',
-          //   '@react-beyond/tw': 'latest',
-          //   'react-beyond': 'latest',
-          //   'tailwindcss': '^3.3.2'
-          // }
+          dependencies: {
+            'autoprefixer': '^10.4.14',
+            '@react-beyond/classfor': 'latest',
+            '@react-beyond/clsx': 'latest',
+            '@react-beyond/errorfallback': 'latest',
+            '@react-beyond/hrefhandler': 'latest',
+            '@react-beyond/ifelse': 'latest',
+            '@react-beyond/loader': 'latest',
+            '@react-beyond/menu': 'latest',
+            '@react-beyond/hoc': 'latest',
+            '@react-beyond/tooltip': 'latest',
+            '@react-beyond/transpose': 'latest',
+            '@react-beyond/tw': 'latest',
+            '@react-beyond/rxjs': 'latest',
+            'react-beyond': 'latest',
+            'tailwindcss': '^3.3.2',
+
+            // todo: make it local
+            "mobx": "^6.10.0",
+            "mobx-react-lite": "^4.0.3",
+            "rxjs": "^7.8.1",
+          }
         },
         files: {
-          'package.json': {
-            hidden: true,
-            code: removeIndent(
-              `{
-                "scripts": {
-                  "dev": "vite",
-                  "build": "vite build",
-                  "preview": "vite preview"
-                },
-                "dependencies": {
-                  "react": "^18.2.0",
-                  "react-dom": "^18.2.0",
-                  "autoprefixer": "^10.4.14",
-                  "@react-beyond/classfor": "latest",
-                  "@react-beyond/clsx": "latest",
-                  "@react-beyond/errorfallback": "latest",
-                  "@react-beyond/hrefhandler": "latest",
-                  "@react-beyond/ifelse": "latest",
-                  "@react-beyond/loader": "latest",
-                  "@react-beyond/menu": "latest",
-                  "@react-beyond/mobx": "latest",
-                  "@react-beyond/tooltip": "latest",
-                  "@react-beyond/transpose": "latest",
-                  "@react-beyond/tw": "latest",
-                  "react-beyond": "latest",
-                  "tailwindcss": "^3.3.2"
-                },
-                "devDependencies": {
-                  "@vitejs/plugin-react": "3.1.0",
-                  "vite": "4.1.4",
-                  "esbuild-wasm": "0.17.12"
-                }
-              }`
-            )
-        },
+        //   'package.json': {
+        //     hidden: true,
+        //     code: removeIndent(
+        //       `{
+        //         "scripts": {
+        //           "dev": "vite",
+        //           "build": "vite build",
+        //           "preview": "vite preview"
+        //         },
+        //         "dependencies": {
+        //           "react": "^18.2.0",
+        //           "react-dom": "^18.2.0",
+        //           "autoprefixer": "^10.4.14",
+        //           "@react-beyond/classfor": "latest",
+        //           "@react-beyond/clsx": "latest",
+        //           "@react-beyond/errorfallback": "latest",
+        //           "@react-beyond/hrefhandler": "latest",
+        //           "@react-beyond/ifelse": "latest",
+        //           "@react-beyond/loader": "latest",
+        //           "@react-beyond/menu": "latest",
+        //           "@react-beyond/mobx": "latest",
+        //           "@react-beyond/tooltip": "latest",
+        //           "@react-beyond/transpose": "latest",
+        //           "@react-beyond/tw": "latest",
+        //           "react-beyond": "latest",
+        //           "tailwindcss": "^3.3.2"
+        //         },
+        //         "devDependencies": {
+        //           "@vitejs/plugin-react": "3.1.0",
+        //           "vite": "4.1.4",
+        //           "esbuild-wasm": "0.17.12"
+        //         }
+        //       }`
+        //     )
+        //   },
         },
         files: {
           },
@@ -195,27 +201,27 @@ export default function (props) {
             `)
           },
           '/index.jsx': {
-            code: removeIndent(`
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { Beyond } from 'react-beyond'
-${(props.features || [])
-  .map((f) => `import { ${f.trim().match(/^\w+/)[0]} } from '@react-beyond/${f.trim().match(/^\w+/)[0].toLowerCase()}'`)
-  .join('\n')}
+            code: removeIndent(
+              `import { StrictMode } from 'react'
+              import { createRoot } from 'react-dom/client'
+              import { Beyond } from 'react-beyond'
+              ${(props.features || [])
+                .map((f) => `import { ${f.trim().match(/^\w+/)[0]} } from '@react-beyond/${f.trim().match(/^\w+/)[0].toLowerCase()}'`)
+                .join('\n              ')}
 
-import App from './App'
-import './styles.css'
+              import App from './App'
+              import './styles.css'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Beyond features={[${(props.features || [])
-      .map((f) => `${f}`)
-      .join(', ')}]}>
-      <App />
-    </Beyond>
-  </StrictMode>
-)
-`)
+              createRoot(document.getElementById('root')).render(
+                <StrictMode>
+                  <Beyond features={[${(props.features || [])
+                    .map((f) => `${f}`)
+                    .join(', ')}]}>
+                    <App />
+                  </Beyond>
+                </StrictMode>
+              )`
+            )
           },
           '/App.jsx': removeIndent(
             `export default function App() {

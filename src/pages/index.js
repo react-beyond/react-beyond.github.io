@@ -1,14 +1,11 @@
 import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import { onChildren } from '@react-beyond/onchildren'
-import { tw } from '@react-beyond/tw'
 import Layout from '@theme/Layout'
 import clsx from 'clsx'
-import React, { useState, useRef } from 'react'
-import { Beyond } from 'react-beyond'
+import React, { useState } from 'react'
 import 'swiper/css'
+import { HashNavigation, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, HashNavigation } from 'swiper/modules'
 import HomepageFeatures from '../components/HomepageFeatures'
 import Sandpack from '../components/Sandpack'
 
@@ -84,16 +81,16 @@ export default function Home() {
             'x-tw': [tab === idx && 'active']
           })}
         >
-          <button>If/else</button>
-          <button>Class</button>
+          <button class={location.hash === '#ifelse' && 'active'}>If/else</button>
+          <button class={location.hash === '#classfor' && 'active'}>Class</button>
           {/* <button>Tailwind</button> */}
-          <button>Transpose</button>
-          <button>Error fallback</button>
-          <button>Loader</button>
-          <button>On children</button>
-          <button>Menu</button>
-          <button>Observer</button>
-          <button>RxJS</button>
+          <button class={location.hash === '#transpose' && 'active'}>Transpose</button>
+          <button class={location.hash === '#errorfallback' && 'active'}>Error fallback</button>
+          {/* <button>Loader</button> */}
+          {/* <button>On children</button> */}
+          {/* <button>Menu</button> */}
+          <button class={location.hash === '#hoc' && 'active'}>MobX observer</button>
+          <button class={location.hash === '#rxjs' && 'active'}>RxJS</button>
           {/* <button>Lazy render</button> */}
         </div>
         <div class="xshadow-[0_5px_40px_rgba(0,0,255,1)]">
@@ -228,19 +225,100 @@ export default function Home() {
                   return (
                     <div className="flex flex-col gap-2">
                       <button>Hello</button>
-                      <Inner />
+                      <BadComponent />
                     </div>
                   )
                 }
 
-                function Inner() {
-                  fortune;favors;the;brave
+                function BadComponent() {
+                  comment;me;out;
                   return (
                     <button>Bad component 💀</button>
                   )
                 }
-
               `)
+                }}
+              />
+            </SwiperSlide>
+            <SwiperSlide data-hash="hoc">
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+                `}
+                features={[`hoc(observer)`]}
+                files={{
+                  '/index.jsx': {
+                    code: removeIndent(
+                      `import { StrictMode } from 'react'
+                      import { createRoot } from 'react-dom/client'
+                      import { Beyond } from 'react-beyond'
+                      import { hoc } from '@react-beyond/hoc'
+                      import { observer } from 'mobx-react-lite'
+
+                      import App from './App'
+                      import './styles.css'
+
+                      createRoot(document.getElementById('root')).render(
+                        <StrictMode>
+                          <Beyond features={[hoc(observer)]}>
+                            <App />
+                          </Beyond>
+                        </StrictMode>
+                      )`
+                    )
+                  },
+                  '/App.jsx': removeIndent(`
+                    // Components are automatically wrapped with \`observer()\`
+                    import { store } from './store'
+
+                    export default function App() {
+                      return (
+                        <button onClick={() => {
+                          store.counter++
+                        }}>Counter {store.counter}</button>
+                      )
+                    }
+                  `),
+                  '/store.js': removeIndent(`
+                    import { makeAutoObservable } from 'mobx'
+
+                    export const store = makeAutoObservable({
+                      counter: 0
+                    })`)
+                }}
+              />
+            </SwiperSlide>
+            <SwiperSlide data-hash="rxjs">
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+                `}
+                features={[`rxjs()`]}
+                files={{
+                  '/App.jsx': removeIndent(`
+                    // Show RxJS stream values as React children
+                    import { counter$, counterSubject } from './store'
+
+                    export default function App() {
+                      return (
+                        <button onClick={() => { counterSubject.next(1) }}>
+                          Counter {counter$}
+                        </button>
+                      )
+                    }
+                  `),
+                  '/store.js': removeIndent(`
+                    import { ReplaySubject, scan, startWith } from 'rxjs'
+
+                    export const counterSubject = new ReplaySubject()
+                    export const counter$ = counterSubject.pipe(
+                      scan((count, value) => count + 1, 0),
+                      startWith(0)
+                    )`)
                 }}
               />
             </SwiperSlide>

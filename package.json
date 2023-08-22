@@ -12,7 +12,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "test": "rm -rf node_modules; rm package-lock.json; npm i react-beyond@latest @react-beyond/errorfallback@latest @react-beyond/classfor@latest @react-beyond/clsx@latest @react-beyond/ifelse@latest @react-beyond/hrefhandler@latest @react-beyond/loader@latest @react-beyond/menu@latest @react-beyond/hoc@latest @react-beyond/tooltip@latest @react-beyond/transpose@latest @react-beyond/tw@latest @react-beyond/onchildren@latest --force"
+    "test": "rm -rf node_modules; rm package-lock.json; npm i react-beyond@latest @react-beyond/errorfallback@latest @react-beyond/classfor@latest @react-beyond/clsx@latest @react-beyond/ifelse@latest @react-beyond/hrefhandler@latest @react-beyond/loader@latest @react-beyond/menu@latest @react-beyond/hoc@latest @react-beyond/tooltip@latest @react-beyond/transpose@latest @react-beyond/tw@latest @react-beyond/onchildren@latest @react-beyond/rxjs@latest --force"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.9",
@@ -29,6 +29,7 @@
     "@react-beyond/loader": "^1.0.0-beta.28",
     "@react-beyond/menu": "^1.0.0-beta.28",
     "@react-beyond/onchildren": "^1.0.0-beta.28",
+    "@react-beyond/rxjs": "^1.0.0-beta.28",
     "@react-beyond/tooltip": "^1.0.0-beta.28",
     "@react-beyond/transpose": "^1.0.0-beta.28",
     "@react-beyond/tw": "^1.0.0-beta.28",
