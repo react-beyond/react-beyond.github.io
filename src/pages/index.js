@@ -98,6 +98,9 @@ export default function Home() {
           <button class={location.hash === '#transpose' && 'active'}>
             Transpose
           </button>
+          <button class={location.hash === '#hrefhandler' && 'active'}>
+            Href handler
+          </button>
           <button class={location.hash === '#errorfallback' && 'active'}>
             Error fallback
           </button>
@@ -225,6 +228,44 @@ export default function Home() {
                 }`)
                 }}
               />
+            </SwiperSlide>
+            <SwiperSlide data-hash="hrefhandler">
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+
+                  a {
+                    @apply underline block text-blue-600;
+                  }
+                `}
+                features={[`hrefHandler({
+                    navigate: (href) => {
+                      alert(\`Navigating to \${href}\`)
+                    }
+                  })`]}
+                files={{
+                  '/App.jsx': removeIndent(`
+                // Use \`<a href=\` elements for soft navigation
+                export default function App() {
+                  const navigate = (href) => {
+                    alert(\`Navigating to \${href}\`)
+                  }
+
+                  return ([
+                    // Instead of this...
+                    <a href="/link1" onClick={(e) => {
+                      e.preventDefault()
+                      navigate("/link1")
+                    }}>Link 1</a>,
+
+                    // ...you can do this
+                    <a href="/link2">Link 2</a>
+                  ])
+                }`),
+              }}
+            />
             </SwiperSlide>
             <SwiperSlide data-hash="errorfallback">
               <Sandpack
