@@ -1,16 +1,38 @@
 ---
 sidebar_position: 3
-description: Transforms all `_clsx` prop on elements to `className` with clsx() applied.
+description: Transforms all `x-clsx` prop on elements to `className` with clsx() applied.
 ---
 
-# deepClsxProp
+# clsx
 
-Transforms all "_clsx" prop on elements to "className" with clsx() applied. If a `className` prop is already present, it will be merged.
+Transforms all "x-clsx" prop on elements to "className" with clsx() applied. If a `className` prop is already present, it will be merged.
+
+<Sandpack
+  css={`
+    body {
+      @apply flex h-screen justify-center items-center;
+    }
+  `}
+  features={['classFor()']}
+  files={{
+    '/App.jsx': removeIndent(`
+  // Use \`class\` and \`for\` instead of \`className\` and \`htmlFor\`
+
+  export default function App() {
+    return (
+      <button class="bg-blue-500 text-white">
+        Hello
+      </button>
+    )
+  }
+`)
+  }}
+/>
 
 ## Installation
 
 ```bash
-npm install react-beyond @react-beyond/clsxprop
+npm install react-beyond @react-beyond/clsx
 ```
 
 ## Usage

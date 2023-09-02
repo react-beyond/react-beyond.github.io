@@ -1,0 +1,45 @@
+---
+sidebar_position: 3
+description: Wraps all components in the subtree in an ErrorBoundary.
+---
+
+# errorFallback
+
+Wraps all components in the subtree in an ErrorBoundary.
+
+This HOC is mainly for demonstration purposes, as it pollutes the component tree in DevTools. [deepTryCatch](/docs/gallery/try-catch) has the same capability, but is much more practical!
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/errorboundary
+```
+
+## Usage
+
+```
+deepErrorBoundary(opts: {
+  id?: string
+  fallback?: (componentName: string) => ReactElement
+} = {}): HOC
+```
+
+- `id` - The id of the HOC. Defaults to `"errorBoundary"`.
+- `fallback` - A render function which gets the errored component's name and returns a ReactElement to render in its place. Defaults to a `<div>` which takes up the available space and shows `[<component name> error]` in the middle.
+
+(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
+
+## Examples
+
+```tsx
+import { Beyond } from "react-beyond"
+import { deepErrorBoundary } from "@react-beyond/errorboundary"
+
+const el = (
+  <Beyond hocs={[deepErroBoundary()]}>
+    <App />
+  </Beyond>
+)
+```
+
+

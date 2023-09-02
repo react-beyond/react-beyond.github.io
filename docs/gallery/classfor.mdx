@@ -1,0 +1,83 @@
+---
+sidebar_position: 3
+description: Transforms all `class` and `for` props to `className` and `htmlFor`.
+---
+
+# classFor
+
+Transforms all "class" and "for" props to "className" and "htmlFor".
+
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
+
+<Sandpack
+  css={`
+    body {
+      @apply flex h-screen justify-center items-center;
+    }
+  `}
+  features={['classFor()']}
+  files={{
+    '/App.jsx': removeIndent(`
+  // Use \`class\` and \`for\` instead of \`className\` and \`htmlFor\`
+
+  export default function App() {
+    return (
+      <button class="bg-blue-500 text-white">
+        Hello
+      </button>
+    )
+  }
+`)
+  }}
+/>
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/classfor
+```
+
+## Usage
+
+```tsx
+import { Beyond } from 'react-beyond'
+import { classFor } from '@react-beyond/classfor'
+
+<Beyond features={[classFor(<options>)]}>
+  <App />
+</Beyond>
+```
+
+## Options
+
+- `id` - The id of the HOC. Defaults to `"classFor"`.
+- `onlyDom` - Whether to replace the `class` prop on components too, not just on DOM elements. It never replaces the `for` prop on components. Defaults to `false`.
+- `clsx` - The id of the HOC. Defaults to `"classForProp"`.
+
+(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
+
+## Examples
+
+```tsx
+import { Beyond } from "react-beyond"
+import { deepClassForProp } from "@react-beyond/classfor"
+
+const el = (
+  <Beyond hocs={[deepClassForProp()]}>
+    <App />
+  </Beyond>
+)
+```
+
+Elements like this under `<App />`:
+
+```tsx
+<div class="some-class" />
+```
+
+will turn into this:
+
+```tsx
+<div className="some-class" />
+```

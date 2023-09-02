@@ -29,18 +29,6 @@ React is lovely, but it has its annoyances.
     </Tooltip>
     ```
 
-    This is severely unintuitive. Why? Because it elevates a secondary feature above the main functionality. The app works without the tooltip, but not without the button. Still, the tooltip is the boss.
+    This is severely unintuitive. Why? Because it _obscuscates the containment logic_. It elevates a secondary feature above the main functionality. The app works without the tooltip, but not without the button. Still, the tooltip is the boss. The same applies to all kinds of floating components, and to some level, non-representational components too, like an ErrorBoundary.
 
 With React Beyond, you can get past these sorts of problems effortlessly, but it turns out it provides a lot more than that. Heck, you can even create your own framework on top of React with it...
-
-## Prior art
-
-There has been many attempts actually to add directives to React, and the interest is definitely [there](https://stackoverflow.com/questions/30408586/what-is-the-react-equivalent-of-an-angular-directive-that-only-works-on-attribut ), but these implementations are limited to a very narrow feature set, and are ill-born for different reasons. Let's see a few:
-
-- https://github.com/peakchen90/babel-plugin-react-directives - Core Vue directives, but with a babel plugin.
-- https://github.com/baeyun/directive-x - Babel plugin...
-- https://github.com/mkhstar/react-directive - Not a plugin, but the API is tortuous: `<directive.div dirIf={...}>`.
-- https://github.com/laurci/react-directive-attributes - Overrides the React API, and it's bundler dependent.
-- https://github.com/FullR/react-deep-map - This is something usable, and the project is not dead, but it doesn't step beyond the obvious limitation that it only works on a static element tree.
-
-*React Beyond* doesn't need bundler plugins, and is free of shenanigans. It simply leverages the fact that React is a *functional* library. Note, that React Beyond *does* provide a bundler plugin for Hot Module Reloading to work, just like React does, but it's not necessary for its functionality.
