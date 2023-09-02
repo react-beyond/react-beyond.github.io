@@ -1,65 +1,93 @@
 ---
 sidebar_position: 3
-description: Provides a `_tooltip` prop which will be fed into a render function to render a tooltip.
+description: Maps the element into another one.
 ---
 
 # transpose
 
-Provides a `_tooltip` prop which will be fed into a render function to render a tooltip.
+Maps the element into another one.
+
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
+
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+
+                  button {
+                    @apply mx-3;
+                  }
+                `}
+                features={['transpose()', 'classFor({ clsx: true })']}
+                files={{
+                  '/App.jsx': removeIndent(`
+                // Transpose wrapper components
+                import Tooltip from './Tooltip'
+
+                export default function App() {
+                  return ([
+                    // Tooltip 'contains' the button? Counterintuitive hierarchy
+                    <Tooltip title="Hello">
+                      <button>Hover me 1</button>
+                    </Tooltip>,
+
+                    // Makes more sense, and easier to control it as a prop
+                    <button x-transpose={$ => <Tooltip title="Hello">{$}</Tooltip>}>
+                      Hover me 2
+                    </button>
+                  ])
+                }`),
+                '/Tooltip.jsx': removeIndent(`
+                export default function Tooltip({ title, children }) {
+                  return (
+                    <div class="inline-block relative">
+                      <small class={[
+                        "absolute left-1/2 -translate-x-1/2 bottom-full mb-2",
+                        "bg-slate-600 text-white px-1 rounded hidden"
+                      ]}>
+                        {title}
+                      </small>
+                      <div class="[:has(~&:hover)]:block">
+                        {children}
+                      </div>
+                    </div>
+                  )
+                }`)
+                }}
+              />
 
 ## Installation
 
 ```bash
-npm install react-beyond @react-beyond/tooltipprop
+npm install react-beyond @react-beyond/transpose
 ```
 
 ## Usage
 
-```
-deepTooltipProp(opts: {
-  id?: string
-  render: ({ trigger, propValue }) => ReactElement
-} = {}): HOC
-```
-
-- `id` - The id of the HOC. Defaults to `"tooltipProp"`.
-- `render` - A function that takes an object with the following properties:
-  - `trigger` - This is the base element without the `_tooltip` prop.
-  - `propValue` - The value of the `_tooltip` prop.
-
-(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
-
-## Examples
-
 ```tsx
-import { Beyond } from "react-beyond"
-import { deepTooltipProp } from "@react-beyond/tooltipprop"
+import { Beyond } from 'react-beyond'
+import { classFor } from '@react-beyond/transpose'
 
-import Tooltip from '@mui/material/Tooltip'
+<Beyond features={[transpose()]}>
+  <App />
+</Beyond>
 
-const el = (
-  <Beyond hocs={[
-    deepTooltipProp({
-      render: ({ trigger, propValue }) => <Tooltip title={propValue}>{trigger}</Tooltip>
-    })
-  ]}>
-    <App />
-  </Beyond>
-)
+// ...
+
+function Component() {
+  <Element x-transpose={$ => <Wrapper>{$}</Wrapper>}>
+    Something
+  </Element>
+}
 ```
 
-Elements like this under `<App />`:
+## Options
 
-```tsx
-<button
-  onClick={() => setCount((count) => count + 1)}
-  _tooltip="Hey!"
->
-  count is {count}
-</button>
-```
+- `id` - The id of the feature HOC. Defaults to `"transpose"`.
 
-Will be rendered like this:
+## Directives
 
-![tooltipprop](/img/tooltipprop.gif)
+- `'x-transpose'?: (self: ReactElement) => ReactElement` - Render function which maps the original element into another one.
 

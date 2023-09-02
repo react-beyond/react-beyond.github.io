@@ -1,0 +1,69 @@
+---
+sidebar_position: 3
+description: Provides conditional `x-if`/`x-else-if`/`x-else` directives.
+---
+
+# ifElse
+
+Provides conditional `x-if`/`x-else-if`/`x-else` directives. It works the same way as in Vue.js.
+
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
+
+              <Sandpack
+                css={`
+                  body {
+                    @apply flex h-screen justify-center items-center;
+                  }
+                `}
+                features={['ifElse()']}
+                files={{
+                  '/App.jsx': removeIndent(`
+                // Vue-like if/else directives
+                // to avoid "syntax disaster"
+
+                export default function App() {
+                  return (
+                    <>
+                      <button x-if={false}>Hello 1</button>
+                      <button x-else-if={false}>Hello 2</button>
+                      <button x-else>Hello 3</button>
+                    </>
+                  )
+                }
+              `)
+                }}
+              />
+
+
+## Installation
+
+```bash
+npm install react-beyond @react-beyond/ifelse
+```
+
+## Usage
+
+```tsx
+import { Beyond } from 'react-beyond'
+import { classFor } from '@react-beyond/ifelse'
+
+<Beyond features={[ifElse()]}>
+  <Element1 x-if={<condition>} />
+  <Element2 x-else-if={<condition>} />
+  <Element3 x-else />
+</Beyond>
+```
+
+## Options
+
+- `id` - The id of the feature HOC. Defaults to `"ifElse"`.
+
+## Directives
+
+- `'x-if'?: boolean` - If true, the element will be rendered, otherwise a `<></>` will be in its place.
+
+ - `'x-else-if'?: boolean` - It can be used as an _else if_ case for a preceding `x-if` or `x-else-if`. If there's no preceding `x-if` or `x-else-if`, an error will be thrown.
+
+- `'x-else'?: true` - It can be used as an _else_ case for a preceding `x-if` or `x-else-if`. If there's no preceding `x-if` or `x-else-if`, an error will be thrown.
+

@@ -5,26 +5,19 @@ description: Renders a loader mask on top of elements with a truthy _loader prop
 
 # loader
 
-Renders a loader mask on top of elements with a truthy `_loader` prop.
+Renders a loader mask on top of elements with a truthy `x-loader` prop.
 
 It provides a `loaderMask` config. But it doesn't only render the `loaderMask` in place of the component: the layout wouldn't match. In order to make the `loaderMask` cover up the exact same area as the component, it adds additional wrappings around the base component to provide a container for the `loaderMask` with the proper size. As there's no safe way in CSS to wrap a DOM element without affecting the layout and keep the wrapper a positioned context, `deepLoaderProp`'s wrapper component tries to acquire the `style.display` property of the base component's root DOM node in a useLayoutEffect hook, and uses that display value for the wrapper elements. In most cases it works well.
 
 ## Installation
 
 ```bash
-npm install react-beyond @react-beyond/loaderprop
+npm install react-beyond @react-beyond/loader
 ```
 
-## Usage
+## Options
 
-```
-deepClsxProp(opts: {
-  id?: string
-  loaderMask?: ReactElement
-} = {}): HOC
-```
-
-- `id` - The id of the HOC. Defaults to `"loaderProp"`.
+- `id` - The id of the feature HOC. Defaults to `"loader"`.
 - `loaderMask` - The loader mask to render. Defaults to a component which takes up the container's area (see above) and shows "Loading..." in the center.
 
 (Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
@@ -33,10 +26,10 @@ deepClsxProp(opts: {
 
 ```tsx
 import { Beyond } from "react-beyond"
-import { deepClsxProp } from "@react-beyond/loaderprop"
+import { deepClsxProp } from "@react-beyond/loader"
 
 const el = (
-  <Beyond hocs={[deepLoaderProp()]}>
+  <Beyond hocs={[loader()]}>
     <App />
   </Beyond>
 )
