@@ -2,11 +2,31 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://react-beyond.github.io/blog</id>
     <title>React Beyond Blog</title>
-    <updated>2023-06-25T00:00:00.000Z</updated>
+    <updated>2023-09-02T16:27:53.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://react-beyond.github.io/blog"/>
     <subtitle>React Beyond Blog</subtitle>
     <icon>https://react-beyond.github.io/img/logo.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[Prior Art]]></title>
+        <id>https://react-beyond.github.io/blog/prior-art</id>
+        <link href="https://react-beyond.github.io/blog/prior-art"/>
+        <updated>2023-09-02T16:27:53.000Z</updated>
+        <summary type="html"><![CDATA[There has been many attempts actually to add directives to React, and the interest is definitely there, but these implementations are limited to a very narrow feature set, and are ill-born for different reasons. Let's see a few:]]></summary>
+        <content type="html"><![CDATA[<p>There has been many attempts actually to add directives to React, and the interest is definitely <a href="https://stackoverflow.com/questions/30408586/what-is-the-react-equivalent-of-an-angular-directive-that-only-works-on-attribut">there</a>, but these implementations are limited to a very narrow feature set, and are ill-born for different reasons. Let's see a few:</p>
+<ul>
+<li><a href="https://github.com/peakchen90/babel-plugin-react-directives">https://github.com/peakchen90/babel-plugin-react-directives</a> - Core Vue directives, but with a babel plugin.</li>
+<li><a href="https://github.com/baeyun/directive-x">https://github.com/baeyun/directive-x</a> - Babel plugin...</li>
+<li><a href="https://github.com/mkhstar/react-directive">https://github.com/mkhstar/react-directive</a> - Not a plugin, but the API is tortuous: <code>&lt;directive.div dirIf={...}&gt;</code>.</li>
+<li><a href="https://github.com/laurci/react-directive-attributes">https://github.com/laurci/react-directive-attributes</a> - Overrides the React API, and it's bundler dependent.</li>
+<li><a href="https://github.com/FullR/react-deep-map">https://github.com/FullR/react-deep-map</a> - This is something usable, and the project is not dead, but it doesn't step beyond the obvious limitation that it only works on a static element tree.</li>
+</ul>
+<p><em>React Beyond</em> doesn't need bundler plugins, and is free of shenanigans. It simply leverages the fact that React is a <em>functional</em> library. Note, that React Beyond <em>does</em> provide a bundler plugin for Hot Module Reloading to work, just like React does, but it's not necessary for its functionality.</p>]]></content>
+        <author>
+            <name>Marton Sari</name>
+            <uri>https://github.com/sarimarton</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Announcing React Beyond]]></title>
         <id>https://react-beyond.github.io/blog/announcing-react-beyond</id>
@@ -34,20 +54,10 @@
   &lt;Button onClick={() =&gt; alert('hi')}&gt;Hi&lt;/Button&gt;
 &lt;/Tooltip&gt;
 </code></pre>
-<p>This is severely unintuitive. Why? Because it elevates a secondary feature above the main functionality. The app works without the tooltip, but not without the button. Still, the tooltip is the boss.</p>
+<p>This is severely unintuitive. Why? Because it <em>obscuscates the containment logic</em>. It elevates a secondary feature above the main functionality. The app works without the tooltip, but not without the button. Still, the tooltip is the boss. The same applies to all kinds of floating components, and to some level, non-representational components too, like an ErrorBoundary.</p>
 </li>
 </ul>
-<p>With React Beyond, you can get past these sorts of problems effortlessly, but it turns out it provides a lot more than that. Heck, you can even create your own framework on top of React with it...</p>
-<h2 id="prior-art">Prior art</h2>
-<p>There has been many attempts actually to add directives to React, and the interest is definitely <a href="https://stackoverflow.com/questions/30408586/what-is-the-react-equivalent-of-an-angular-directive-that-only-works-on-attribut">there</a>, but these implementations are limited to a very narrow feature set, and are ill-born for different reasons. Let's see a few:</p>
-<ul>
-<li><a href="https://github.com/peakchen90/babel-plugin-react-directives">https://github.com/peakchen90/babel-plugin-react-directives</a> - Core Vue directives, but with a babel plugin.</li>
-<li><a href="https://github.com/baeyun/directive-x">https://github.com/baeyun/directive-x</a> - Babel plugin...</li>
-<li><a href="https://github.com/mkhstar/react-directive">https://github.com/mkhstar/react-directive</a> - Not a plugin, but the API is tortuous: <code>&lt;directive.div dirIf={...}&gt;</code>.</li>
-<li><a href="https://github.com/laurci/react-directive-attributes">https://github.com/laurci/react-directive-attributes</a> - Overrides the React API, and it's bundler dependent.</li>
-<li><a href="https://github.com/FullR/react-deep-map">https://github.com/FullR/react-deep-map</a> - This is something usable, and the project is not dead, but it doesn't step beyond the obvious limitation that it only works on a static element tree.</li>
-</ul>
-<p><em>React Beyond</em> doesn't need bundler plugins, and is free of shenanigans. It simply leverages the fact that React is a <em>functional</em> library. Note, that React Beyond <em>does</em> provide a bundler plugin for Hot Module Reloading to work, just like React does, but it's not necessary for its functionality.</p>]]></content>
+<p>With React Beyond, you can get past these sorts of problems effortlessly, but it turns out it provides a lot more than that. Heck, you can even create your own framework on top of React with it...</p>]]></content>
         <author>
             <name>Marton Sari</name>
             <uri>https://github.com/sarimarton</uri>
