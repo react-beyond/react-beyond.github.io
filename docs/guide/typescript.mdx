@@ -13,9 +13,9 @@ declare module 'react' {
 }
 ```
 
-This ensures that TypeScript doesn't complain about the magic prop, and that you can Cmd/Ctrl + Click on the prop to go to the declaration.
+This ensures that TypeScript doesn't complain about the directive prop, and that you can Cmd/Ctrl + Click on the prop to go to the declaration.
 
-But this is a global override. Even though the runtime mechanics of Beyond Features is strictly scoped down to the component's subtree, TypeScript type declarations are global.
+But keep in mind, that this is a global override. Even though the runtime mechanics of Beyond Features is strictly scoped down to the component's subtree, TypeScript type declarations remain global.
 
 ## ESLint
 

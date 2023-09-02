@@ -1,54 +1,83 @@
 ---
 sidebar_position: 3
-description: Wraps all components in a mobx `observer` HOC.
+description: Wraps all components in a higher-order component.
 ---
 
 # hoc
 
-Wraps all function components in a mobx `observer` HOC.
+Wraps all components in a higher-order component.
+
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
+
+<Sandpack
+  css={`
+    body {
+      @apply flex h-screen justify-center items-center;
+    }
+  `}
+  features={[`hoc(observer)`]}
+  files={{
+    '/index.jsx': {
+      code: removeIndent(
+        `import { StrictMode } from 'react'
+        import { createRoot } from 'react-dom/client'
+        import { Beyond } from 'react-beyond'
+        import { hoc } from '@react-beyond/hoc'
+        import { observer } from 'mobx-react-lite'
+
+        import App from './App'
+        import './styles.css'
+
+        createRoot(document.getElementById('root')).render(
+          <StrictMode>
+            <Beyond features={[hoc(observer)]}>
+              <App />
+            </Beyond>
+          </StrictMode>
+        )`
+      )
+    },
+    '/App.jsx': removeIndent(`
+      // Components are automatically wrapped with \`observer()\`
+      import { store } from './store'
+
+      export default function App() {
+        return (
+          <button onClick={() => { store.counter++ }}>
+            Counter {store.counter}
+          </button>
+        )
+      }
+    `),
+    '/store.js': removeIndent(`
+      import { makeAutoObservable } from 'mobx'
+
+      export const store = makeAutoObservable({
+        counter: 0
+      })`)
+  }}
+/>
 
 ## Installation
 
 ```bash
-npm install react-beyond @react-beyond/mobx
+npm install react-beyond @react-beyond/hoc
 ```
 
 ## Usage
 
-```
-deepMobx(opts: {
-  id?: string
-} = {}): HOC
-```
-
-- `id` - The id of the HOC. Defaults to `"mobx"`.
-
-(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
-
-## Examples
-
 ```tsx
-import { Beyond } from "react-beyond"
-import { deepTryCatch } from "@react-beyond/mobx"
+import { Beyond } from 'react-beyond'
+import { classFor } from '@react-beyond/clsx'
 
-const el = (
-  <Beyond hocs={[deepMobx()]}>
-    <App />
-  </Beyond>
-)
+<Beyond features={[hoc(<options>)]}>
+  <App />
+</Beyond>
 ```
 
-Components like this under `<App />`:
+## Options
 
-```tsx
-function MyComponent(props) { /* ... */ }
-```
-
-will turn into this:
-
-```tsx
-observer(function MyComponent(props) { /* ... */ })
-```
-
-
-
+The options parameter can either be an higher-order component function or an object with the following properties:
+- `id` - The id of the feature HOC. Defaults to `"hoc"`.
+- `hoc` - The higher-order function in which to wrap the components.

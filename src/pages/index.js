@@ -242,30 +242,30 @@ export default function Home() {
                 `}
                 features={[`hrefHandler({
                     navigate: (href) => {
-                      alert(\`Navigating to \${href}\`)
+                      alert(\`Navigating to \${href} with React Beyond\`)
                     }
                   })`]}
                 files={{
                   '/App.jsx': removeIndent(`
-                // Use \`<a href=\` elements for soft navigation
-                export default function App() {
-                  const navigate = (href) => {
-                    alert(\`Navigating to \${href}\`)
-                  }
+                  // Use \`<a href=\` elements for SPA navigation
+                  export default function App() {
+                    const navigate = (href) => {
+                      alert(\`Navigating to \${href}\`)
+                    }
 
-                  return ([
-                    // Instead of this...
-                    <a href="/link1" onClick={(e) => {
-                      e.preventDefault()
-                      navigate("/link1")
-                    }}>Link 1</a>,
+                    return ([
+                      // Instead of this...
+                      <a href="/link1" onClick={(e) => {
+                        e.preventDefault()
+                        navigate("/link1")
+                      }}>Link 1</a>,
 
-                    // ...you can do this
-                    <a href="/link2">Link 2</a>
-                  ])
-                }`),
-              }}
-            />
+                      // ...you can do this
+                      <a href="/link2">Link 2</a>
+                    ])
+                  }`),
+                }}
+              />
             </SwiperSlide>
             <SwiperSlide data-hash="errorfallback">
               <Sandpack

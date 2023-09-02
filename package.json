@@ -17,8 +17,8 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.9",
     "@codesandbox/sandpack-themes": "^2.0.21",
-    "@docusaurus/core": "3.0.0-alpha.0",
-    "@docusaurus/preset-classic": "3.0.0-alpha.0",
+    "@docusaurus/core": "^3.0.0-alpha.0",
+    "@docusaurus/preset-classic": "^3.0.0-alpha.0",
     "@mdx-js/react": "^1.6.22",
     "@react-beyond/classfor": "^1.0.0-beta.28",
     "@react-beyond/clsx": "^1.0.0-beta.28",

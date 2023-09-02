@@ -12,7 +12,6 @@ npm install react-beyond
 
 ### 2. Add some features from the [Gallery](/docs/category/gallery)
 
-
 ```tsx
 import { Beyond } from "react-beyond"
 
@@ -31,5 +30,31 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-You're good to go! 
-In order to use HMR / React Fast Refresh, head on to the next section.
+### 3. Add the Vite plugin to support hot module replacement.
+
+If you're using Vite, add the `react-beyond/plugin/vite` plugin to your Vite config:
+
+```tsx title="vite.config.ts"
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import reactBeyond from 'react-beyond/plugin/vite'
+
+export default defineConfig({
+  plugins: [react(), reactBeyond()]
+})
+```
+
+Note: `reactBeyond()` must be added _after_ `react()`.
+
+You're good to go now.
+
+<small>
+  <em>
+    #### How HMR works
+  </em>
+
+HMR (Hot Module Replacement) is a feature that allows you to change your code and see the changes in the browser without reloading the page. When you change a file, React Refresh looks up the component by the previous reference in the tree and updates them. But because Beyond features are wrapping all the components, React Refresh can't find the original component within the tree, and therefore nothing happens.
+
+React Beyond, when a feature is applied to a component, registers the new component in React Refresh with an amended ID string, containing the feature chain applied to the base component. When an HMR update occurs, it re-applies the feature HOCs to the new component and registers it again.
+</small>
+

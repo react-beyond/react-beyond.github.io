@@ -83,15 +83,15 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'theSidebar',
             position: 'left',
-            label: 'API',
-            href: '/docs/api'
+            label: 'Gallery',
+            href: '/docs/category/gallery',
           },
           {
             type: 'docSidebar',
             sidebarId: 'theSidebar',
             position: 'left',
-            label: 'Gallery',
-            href: '/docs/category/gallery',
+            label: 'API',
+            href: '/docs/api'
           },
           {
             type: 'docSidebar',
@@ -115,8 +115,10 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Marton Sari`,
       },
       prism: {
+        // theme: require('prism-react-renderer/themes/dracula'),
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['javascript', 'tsx']
       },
       colorMode: {
         defaultMode: 'dark',

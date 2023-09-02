@@ -1,11 +1,14 @@
 ---
 sidebar_position: 3
-description: Transforms all `x-clsx` prop on elements to `className` with clsx() applied.
+description: Transforms all `x-clsx` props to `className` with [clsx](https://www.npmjs.com/package/clsx) applied.
 ---
 
 # clsx
 
-Transforms all "x-clsx" prop on elements to "className" with clsx() applied. If a `className` prop is already present, it will be merged.
+Transforms all `x-clsx` props to `className` with [clsx](https://www.npmjs.com/package/clsx) applied.
+
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
 
 <Sandpack
   css={`
@@ -13,14 +16,12 @@ Transforms all "x-clsx" prop on elements to "className" with clsx() applied. If 
       @apply flex h-screen justify-center items-center;
     }
   `}
-  features={['classFor()']}
+  features={['clsx()']}
   files={{
     '/App.jsx': removeIndent(`
-  // Use \`class\` and \`for\` instead of \`className\` and \`htmlFor\`
-
   export default function App() {
     return (
-      <button class="bg-blue-500 text-white">
+      <button x-clsx={["bg-blue-500", "text-white"]}>
         Hello
       </button>
     )
@@ -37,40 +38,15 @@ npm install react-beyond @react-beyond/clsx
 
 ## Usage
 
-```
-deepClsxProp(opts: {
-  id?: string
-} = {}): HOC
-```
-
-- `id` - The id of the HOC. Defaults to `"clsxProp"`.
-
-(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
-
-## Examples
-
 ```tsx
-import { Beyond } from "react-beyond"
-import { deepClsxProp } from "@react-beyond/clsxprop"
+import { Beyond } from 'react-beyond'
+import { classFor } from '@react-beyond/clsx'
 
-const el = (
-  <Beyond hocs={[deepClsxProp()]}>
-    <App />
-  </Beyond>
-)
+<Beyond features={[clsx()]}>
+  <App />
+</Beyond>
 ```
 
-Elements like this under `<App />`:
+## Options
 
-```tsx
-<div _clsx="some-class" />
-<div _clsx={['some-class', true && 'other-class']} />
-```
-
-will turn into this:
-
-```tsx
-<div className="some-class" />
-<div className="some-class other-class" />
-```
-
+- `id` - The id of the feature HOC. Defaults to `"clsx"`.

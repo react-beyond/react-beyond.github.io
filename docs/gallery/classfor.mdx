@@ -51,33 +51,6 @@ import { classFor } from '@react-beyond/classfor'
 
 ## Options
 
-- `id` - The id of the HOC. Defaults to `"classFor"`.
+- `id` - The id of the feature HOC. Defaults to `"classFor"`.
 - `onlyDom` - Whether to replace the `class` prop on components too, not just on DOM elements. It never replaces the `for` prop on components. Defaults to `false`.
-- `clsx` - The id of the HOC. Defaults to `"classForProp"`.
-
-(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
-
-## Examples
-
-```tsx
-import { Beyond } from "react-beyond"
-import { deepClassForProp } from "@react-beyond/classfor"
-
-const el = (
-  <Beyond hocs={[deepClassForProp()]}>
-    <App />
-  </Beyond>
-)
-```
-
-Elements like this under `<App />`:
-
-```tsx
-<div class="some-class" />
-```
-
-will turn into this:
-
-```tsx
-<div className="some-class" />
-```
+- `clsx` - Whether to accept [clsx](https://www.npmjs.com/package/clsx) syntax.

@@ -5,7 +5,48 @@ description: Turns all <a href> elements into SPA links with a navigate callback
 
 # hrefHandler
 
-Turns all `<a href>` elements into SPA links with a navigate callback. If an onClick prop is already present, it will take precedence.
+Turns all &lt;a href&gt; elements into SPA links with a navigate callback.
+
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
+
+          <Sandpack
+            css={`
+              body {
+                @apply flex h-screen justify-center items-center;
+              }
+
+              a {
+                @apply underline block text-blue-600;
+              }
+            `}
+            features={[`hrefHandler({
+                navigate: (href) => {
+                  alert(\`Navigating to \${href} with React Beyond\`)
+                }
+              })`]}
+            files={{
+              '/App.jsx': removeIndent(`
+              // Use \`<a href=\` elements for SPA navigation
+              export default function App() {
+                const navigate = (href) => {
+                  alert(\`Navigating to \${href}\`)
+                }
+
+                return ([
+                  // Instead of this...
+                  <a href="/link1" onClick={(e) => {
+                    e.preventDefault()
+                    navigate("/link1")
+                  }}>Link 1</a>,
+
+                  // ...you can do this
+                  <a href="/link2">Link 2</a>
+                ])
+              }`),
+            }}
+          />
+
 
 ## Installation
 
@@ -15,50 +56,21 @@ npm install react-beyond @react-beyond/hrefhandler
 
 ## Usage
 
-```
-deepHrefHandler(opts: {
-  id?: string
-  navigate: (href: string) => void
-  onlyRelative?: boolean
-}): HOC
-```
-
-- `id` - The id of the HOC. Defaults to `"hrefHandler"`.
-- `navigate` - The callback to call when a link is clicked.
-- `onlyRelative` - Whether to only handle relative links. Defaults to `true`.
-
-(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
-
-## Examples
-
 ```tsx
-import { Beyond } from "react-beyond"
-import { deepHrefHandler } from "@react-beyond/hrefhandler"
+import { Beyond } from 'react-beyond'
+import { classFor } from '@react-beyond/hrefhandler'
 
-const el = (
-  <Beyond hocs={[
-    deepHrefHandler({
-      navigate: (href) => {
-        console.log(`Navigating to ${href}`)
-      }
-    })
-  ]}>
-    <App />
-  </Beyond>
-)
+<Beyond features={[hrefHandler({
+  navigate: (href) => {
+    alert(`Navigating to ${href} with React Beyond`)
+  }
+})]}>
+  <App />
+</Beyond>
 ```
 
-Elements like this under `<App />`:
+## Options
 
-```tsx
-<a href="/page1" />
-```
-
-will turn into this:
-
-```tsx
-<a href="/page1" onClick={(e) => {
-  e.preventDefault()
-  opts.navigate(/* current value of props.href */)
-}) />
-```
+- `id` - The id of the feature HOC. Defaults to `"hrefHandler"`.
+- `navigate: (href: string) => void` - This function will be called when the user clicks on a link.
+- `onlyRelative?: boolean` - If true, it will only handle relative links. Defaults to `true`.

@@ -5,41 +5,70 @@ description: Wraps all components in the subtree in an ErrorBoundary.
 
 # errorFallback
 
-Wraps all components in the subtree in an ErrorBoundary.
+It provides a fallback for components that throw errors.
 
-This HOC is mainly for demonstration purposes, as it pollutes the component tree in DevTools. [deepTryCatch](/docs/gallery/try-catch) has the same capability, but is much more practical!
+import Sandpack from '../../src/components/Sandpack.js'
+import { removeIndent } from '../../src/components/util.js'
+
+<Sandpack
+  css={`
+    body {
+      @apply flex h-screen justify-center items-center;
+    }
+  `}
+  features={[`errorFallback()`]}
+  files={{
+    '/App.jsx': removeIndent(`
+  // Automatic error fallback
+  export default function App() {
+    // comment;me;out;
+    return (
+      <div className="flex flex-col gap-2">
+        <button>Hello</button>
+        <BadComponent />
+      </div>
+    )
+  }
+
+  function BadComponent() {
+    comment;me;out;
+    return (
+      <button>Bad component 💀</button>
+    )
+  }
+`)
+  }}
+/>
 
 ## Installation
 
 ```bash
-npm install react-beyond @react-beyond/errorboundary
+npm install react-beyond @react-beyond/errorfallback
 ```
 
 ## Usage
 
-```
-deepErrorBoundary(opts: {
-  id?: string
-  fallback?: (componentName: string) => ReactElement
-} = {}): HOC
-```
-
-- `id` - The id of the HOC. Defaults to `"errorBoundary"`.
-- `fallback` - A render function which gets the errored component's name and returns a ReactElement to render in its place. Defaults to a `<div>` which takes up the available space and shows `[<component name> error]` in the middle.
-
-(Check out the [Usage Patterns](/docs/guide/usage-patterns) to see alternative syntaxes.)
-
-## Examples
-
 ```tsx
-import { Beyond } from "react-beyond"
-import { deepErrorBoundary } from "@react-beyond/errorboundary"
+import { Beyond } from 'react-beyond'
+import { errorFallback } from '@react-beyond/errorFallback'
 
-const el = (
-  <Beyond hocs={[deepErroBoundary()]}>
-    <App />
-  </Beyond>
-)
+<Beyond features={[errorFallback(<options>)]}>
+  <App x-error-fallback={true} />
+</Beyond>
 ```
 
+## Options
 
+- `id` - The id of the feature HOC. Defaults to _errorFallback_.
+- `forAll?` - Whether to apply error handling to all components or only to those that have the _x-error-fallback_ prop. Defaults to `true`.
+- `mode?: 'trycatch' | 'errorboundary'`: The mode of error handling.
+   - _trycatch_: uses a try/catch block when rendering the component.
+   - _errorboundary_: wraps the component in an [ErrorBoundary](https://www.npmjs.com/package/react-error-boundary).
+- `defaultFallback?: ReactElement | ((componentName: string) => ReactElement)` - The fallback to use when no fallback is provided for a component. Defaults to a component showing the text "[ComponentName error]".
+
+## Directive
+
+- `x-error-fallback?:
+      | true
+      | ReactElement
+      | ((componentName: string) => ReactElement)` - The fallback to render when an error occurs, or `true` to use the default fallback.
