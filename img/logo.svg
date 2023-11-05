@@ -10,8 +10,8 @@
       </g>
     </mask>
   </defs>
-  <circle cx="100" cy="100" r="90" fill="rgb(102, 137, 255)" mask="url(#starMask)" />
+  <circle cx="100" cy="100" r="90" fill="rgb(133, 106, 180)" mask="url(#starMask)" />
   <g transform="translate(100, 90) scale(10)">
-    <use href="#star" fill="rgba(102, 137, 255, 0.3)"/>
+    <use href="#star" fill="rgba(239, 242, 154, 0.6)"/>
   </g>
 </svg>
