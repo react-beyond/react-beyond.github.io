@@ -339,9 +339,9 @@ export default function Home() {
                     )
                   },
                   '/App.jsx': removeIndent(`
-                    // Components are automatically wrapped with \`observer()\`
                     import { store } from './store'
 
+                    // Components are automatically wrapped with \`observer()\`
                     export default function App() {
                       return (
                         <button onClick={() => { store.counter++ }}>
