@@ -85,32 +85,32 @@ export default function Home() {
           })}
         >
           <button
-            class={
+            className={
               (location.hash === '' || location.hash === '#ifelse') && 'active'
             }
           >
             If/else
           </button>
-          <button class={location.hash === '#classfor' && 'active'}>
+          <button className={location.hash === '#classfor' && 'active'}>
             Class
           </button>
           {/* <button>Tailwind</button> */}
-          <button class={location.hash === '#transpose' && 'active'}>
+          <button className={location.hash === '#transpose' && 'active'}>
             Transpose
           </button>
-          <button class={location.hash === '#hrefhandler' && 'active'}>
+          <button className={location.hash === '#hrefhandler' && 'active'}>
             Href handler
           </button>
-          <button class={location.hash === '#errorfallback' && 'active'}>
+          <button className={location.hash === '#errorfallback' && 'active'}>
             Error fallback
           </button>
           {/* <button>Loader</button> */}
           {/* <button>On children</button> */}
           {/* <button>Menu</button> */}
-          <button class={location.hash === '#hoc' && 'active'}>
+          <button className={location.hash === '#hoc' && 'active'}>
             MobX observer
           </button>
-          <button class={location.hash === '#rxjs' && 'active'}>RxJS</button>
+          <button className={location.hash === '#rxjs' && 'active'}>RxJS</button>
           {/* <button>Lazy render</button> */}
         </div>
         <div class="xshadow-[0_5px_40px_rgba(0,0,255,1)]">
