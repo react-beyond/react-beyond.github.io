@@ -2,7 +2,7 @@ import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Layout from '@theme/Layout'
 import clsx from 'clsx'
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import 'swiper/css'
 import { HashNavigation, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -52,6 +52,14 @@ export default function Home() {
 
   const location = typeof window !== 'undefined' ? window.location : { hash: '' }
 
+  const tabsRef = useRef()
+
+  // The normal class={...} logic doesn't work with SSG for some reason...
+  useLayoutEffect(() => {
+    tabsRef.current.querySelector('.active')?.classList?.remove?.('active')
+    tabsRef.current.querySelector(`[data-item=${location.hash.slice(1)}`).classList.add('active')
+  }, [tabsRef.current])
+
   return (
     <Layout
       title={`${siteConfig.title}`}
@@ -70,6 +78,7 @@ export default function Home() {
           examples:
         </p>
         <div
+          ref={tabsRef}
           x-tw={[
             'flex mb-2 py-3',
             '[&>*]:apply-[pb-1,cursor-pointer,border-solid,border-transparent,border-b-2,border-[20px]]',
@@ -85,32 +94,34 @@ export default function Home() {
           })}
         >
           <button
-            className={
+            class={
+              console.log(location.hash),
               (location.hash === '' || location.hash === '#ifelse') && 'active'
             }
+            data-item='ifelse'
           >
             If/else
           </button>
-          <button className={location.hash === '#classfor' && 'active'}>
+          <button class={location.hash === '#classfor' && 'active'} data-item='classfor'>
             Class
           </button>
           {/* <button>Tailwind</button> */}
-          <button className={location.hash === '#transpose' && 'active'}>
+          <button class={location.hash === '#transpose' && 'active'} data-item='transpose'>
             Transpose
           </button>
-          <button className={location.hash === '#hrefhandler' && 'active'}>
+          <button class={location.hash === '#hrefhandler' && 'active'} data-item='hrefhandler'>
             Href handler
           </button>
-          <button className={location.hash === '#errorfallback' && 'active'}>
+          <button class={location.hash === '#errorfallback' && 'active'} data-item='errorfallback'>
             Error fallback
           </button>
           {/* <button>Loader</button> */}
           {/* <button>On children</button> */}
           {/* <button>Menu</button> */}
-          <button className={location.hash === '#hoc' && 'active'}>
+          <button class={location.hash === '#hoc' && 'active'} data-item='hoc'>
             MobX observer
           </button>
-          <button className={location.hash === '#rxjs' && 'active'}>RxJS</button>
+          <button class={location.hash === '#rxjs' && 'active'} data-item='rxjs'>RxJS</button>
           {/* <button>Lazy render</button> */}
         </div>
         <div class="xshadow-[0_5px_40px_rgba(0,0,255,1)]">
