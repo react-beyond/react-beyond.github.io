@@ -19,8 +19,8 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --marcika-tint-rgb: 181, 95, 231;
-  /* --marcika-tint-rgb: 135, 106, 183; */
+  /* --marcika-tint-rgb: 181, 95, 231; */
+  --marcika-tint-rgb: 135, 106, 183;
   --marcika-tint: rgb(var(--marcika-tint-rgb));
   --ifm-color-primary: var(--marcika-tint);
   /* --ifm-color-primary-dark: #5f63ff;
