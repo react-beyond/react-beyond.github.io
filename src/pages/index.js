@@ -57,7 +57,7 @@ export default function Home() {
   // The normal class={...} logic doesn't work with SSG for some reason...
   useLayoutEffect(() => {
     tabsRef.current.querySelector('.active')?.classList?.remove?.('active')
-    tabsRef.current.querySelector(`[data-item="${location.hash.slice(1)}"]`).classList.add('active')
+    tabsRef.current.querySelector(`[data-item="${location.hash.slice(1)}"]`)?.classList?.add?.('active')
   }, [tabsRef.current])
 
   return (
