@@ -4,10 +4,19 @@
         <title>React Beyond Blog</title>
         <link>https://react-beyond.github.io/blog</link>
         <description>React Beyond Blog</description>
-        <lastBuildDate>Sun, 05 Nov 2023 10:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 02 May 2024 10:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Beyond is ready for React 19]]></title>
+            <link>https://react-beyond.github.io/blog/react-19</link>
+            <guid>https://react-beyond.github.io/blog/react-19</guid>
+            <pubDate>Thu, 02 May 2024 10:00:00 GMT</pubDate>
+            <description><![CDATA[React just announced its version 19 beta with a lot of API change. Among them is making refs regular props, which is very welcome, but it impacted the internals of our code. It wasn't a big deal though, and now I'm happy to claim that from v1.1.2 we're fully ready for React 19 😁.]]></description>
+            <content:encoded><![CDATA[<p>React just announced its version 19 beta with a lot of API change. Among them is making refs regular props, which is very welcome, but it impacted the internals of our code. It wasn't a big deal though, and now I'm happy to claim that from v1.1.2 we're fully ready for React 19 😁.</p>
+<p>Have a good day everyone.</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Announcing React Beyond]]></title>
             <link>https://react-beyond.github.io/blog/announcing-react-beyond</link>

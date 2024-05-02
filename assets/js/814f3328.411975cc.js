@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Beyond is ready for React 19","permalink":"/blog/react-19","unlisted":false},{"title":"Announcing React Beyond","permalink":"/blog/announcing-react-beyond","unlisted":false}]}')}}]);
