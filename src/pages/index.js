@@ -50,14 +50,17 @@ export default function Home() {
   // const swiperRef = useRef()
   const [swiperRef, setSwiperRef] = useState(null)
 
-  const location = typeof window !== 'undefined' ? window.location : { hash: '' }
+  const location =
+    typeof window !== 'undefined' ? window.location : { hash: '' }
 
   const tabsRef = useRef()
 
   // The normal class={...} logic doesn't work with SSG for some reason...
   useLayoutEffect(() => {
     tabsRef.current.querySelector('.active')?.classList?.remove?.('active')
-    tabsRef.current.querySelector(`[data-item="${location.hash.slice(1)}"]`)?.classList?.add?.('active')
+    tabsRef.current
+      .querySelector(`[data-item="${location.hash.slice(1)}"]`)
+      ?.classList?.add?.('active')
   }, [tabsRef.current])
 
   return (
@@ -68,14 +71,11 @@ export default function Home() {
       <HomepageHeader />
       <main className="p-10">
         <p class="">
-          {/* React Beyond lets you define features that are available to an entire
-          subtree with all the descendant components. It provides a foundation
-          for tools to create more intuitive code. */}
-          React Beyond lets you define higher-order components which recursively
-          re-apply themselves on the child components. You can create features
-          that are available to the entire tree. It opens up new exciting
-          possibilities in React to create more intuitive code. Here are a few
-          examples:
+          React Beyond is a <i>higher-order</i> higher-order component. It lets you
+          define higher-order components which recursively re-apply themselves
+          on the child components. You can create features that are available to
+          the entire descendant tree. It opens up new exciting possibilities in React to
+          create more intuitive code. Here are a few examples:
         </p>
         <div
           ref={tabsRef}
@@ -95,33 +95,50 @@ export default function Home() {
         >
           <button
             class={
-              console.log(location.hash),
-              (location.hash === '' || location.hash === '#ifelse') && 'active'
+              (console.log(location.hash),
+              (location.hash === '' || location.hash === '#ifelse') && 'active')
             }
-            data-item='ifelse'
+            data-item="ifelse"
           >
             If/else
           </button>
-          <button class={location.hash === '#classfor' && 'active'} data-item='classfor'>
+          <button
+            class={location.hash === '#classfor' && 'active'}
+            data-item="classfor"
+          >
             Class
           </button>
           {/* <button>Tailwind</button> */}
-          <button class={location.hash === '#transpose' && 'active'} data-item='transpose'>
+          <button
+            class={location.hash === '#transpose' && 'active'}
+            data-item="transpose"
+          >
             Transpose
           </button>
-          <button class={location.hash === '#hrefhandler' && 'active'} data-item='hrefhandler'>
+          <button
+            class={location.hash === '#hrefhandler' && 'active'}
+            data-item="hrefhandler"
+          >
             Href handler
           </button>
-          <button class={location.hash === '#errorfallback' && 'active'} data-item='errorfallback'>
+          <button
+            class={location.hash === '#errorfallback' && 'active'}
+            data-item="errorfallback"
+          >
             Error fallback
           </button>
           {/* <button>Loader</button> */}
           {/* <button>On children</button> */}
           {/* <button>Menu</button> */}
-          <button class={location.hash === '#hoc' && 'active'} data-item='hoc'>
+          <button class={location.hash === '#hoc' && 'active'} data-item="hoc">
             MobX observer
           </button>
-          <button class={location.hash === '#rxjs' && 'active'} data-item='rxjs'>RxJS</button>
+          <button
+            class={location.hash === '#rxjs' && 'active'}
+            data-item="rxjs"
+          >
+            RxJS
+          </button>
           {/* <button>Lazy render</button> */}
         </div>
         <div class="xshadow-[0_5px_40px_rgba(0,0,255,1)]">
@@ -221,7 +238,7 @@ export default function Home() {
                     </button>
                   ])
                 }`),
-                '/Tooltip.jsx': removeIndent(`
+                  '/Tooltip.jsx': removeIndent(`
                 export default function Tooltip({ title, children }) {
                   return (
                     <div class="inline-block relative">
@@ -251,11 +268,13 @@ export default function Home() {
                     @apply underline block text-blue-600;
                   }
                 `}
-                features={[`hrefHandler({
+                features={[
+                  `hrefHandler({
                     navigate: (href) => {
                       alert(\`Navigating to \${href} with React Beyond\`)
                     }
-                  })`]}
+                  })`
+                ]}
                 files={{
                   '/App.jsx': removeIndent(`
                   // Use \`<a href=\` elements for SPA navigation
@@ -274,7 +293,7 @@ export default function Home() {
                       // ...you can do this
                       <a href="/link2">Link 2</a>
                     ])
-                  }`),
+                  }`)
                 }}
               />
             </SwiperSlide>
